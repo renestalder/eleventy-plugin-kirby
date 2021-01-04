@@ -5,3 +5,4 @@ Makefile
 .prettierrc
 .editorconfig
 .nvmrc
+.npm
