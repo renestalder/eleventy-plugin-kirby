@@ -80,13 +80,13 @@ Required environment variables:
 
 ```sh
 # URL to the Kirby CMS installation
-KIRBYCMS_URL="https://example.com"
+API_KIRBYCMS_URL="https://example.com"
 
 # API user
-KIRBYCMS_USER="user@example.com"
+API_KIRBYCMS_USER="user@example.com"
 
 # API user password
-KIRBYCMS_PASSWORD="password"
+API_KIRBYCMS_PASSWORD="password"
 ```
 
 Refer to the dotenv documentation for proper setup with the .env file.
