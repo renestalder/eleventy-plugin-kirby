@@ -1,0 +1,7 @@
+demo
+docker-compose.yml
+Dockerfile
+Makefile
+.prettierrc
+.editorconfig
+.nvmrc

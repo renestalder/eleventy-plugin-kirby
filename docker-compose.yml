@@ -1,0 +1,27 @@
+version: "3.8"
+
+services:
+  kirbycms:
+    build:
+      context: ./demo/kirbycms
+      target: dev-stage
+    container_name: 11ty-plugin-kirby-cms
+    ports:
+      - 3002:80
+    volumes:
+      - ./demo/kirbycms:/app:rw
+  11ty-web-frontend:
+    tty: true
+    build:
+      context: .
+    container_name: 11ty-plugin-kirby-frontend
+    environment:
+      - NPM_PACKAGE_NAME=eleventy-plugin-kirby
+    ports:
+      - 3000:3000
+      - 3001:3001
+    volumes:
+      - ./demo/11ty-web-frontend:/app:rw
+      - ./:/plugin:rw
+    depends_on:
+      - kirbycms

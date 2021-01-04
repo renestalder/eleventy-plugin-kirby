@@ -1,0 +1,195 @@
+{
+  "query": "site",
+  "select": {
+    "language": {
+      "query": "kirby.languageCode"
+    },
+    "languages": {
+      "query": "kirby.languages"
+    },
+    "mainNavigation": "site.main_navigation.yaml",
+    "secondaryNavigation": "site.secondary_navigation.yaml",
+    "footerNavigation": "site.footer_navigation.yaml",
+    "uploads": {
+      "select": {
+        "images": {
+          "query": "site",
+          "select": {
+            "site": {
+              "query": "site.images",
+              "select": {
+                "id": true,
+                "url": true,
+                "src": "file.resize({{IMAGE_SRC}})",
+                "srcset": "file.srcset({{IMAGE_SRCSET}})",
+                "type": true,
+                "content": {
+                  "query": "file.content",
+                  "select": {
+                    "template": "content.template",
+                    "ariaHidden": "content.aria_hidden.toBool",
+                    "alt": "content.alt"
+                  }
+                }
+              }
+            },
+            "pages": {
+              "query": "site.index.files.filterBy('type', '==', 'image')",
+              "select": {
+                "id": true,
+                "url": true,
+                "src": "file.resize({{IMAGE_SRC}})",
+                "srcset": "file.srcset({{IMAGE_SRCSET}})",
+                "type": true,
+                "content": {
+                  "query": "file.content",
+                  "select": {
+                    "template": "content.template",
+                    "ariaHidden": "content.aria_hidden.toBool",
+                    "alt": "content.alt"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "documents": {
+          "query": "site",
+          "select": {
+            "site": {
+              "query": "site.files.filterBy('type', '!=', 'image')",
+              "select": {
+                "id": true,
+                "url": true,
+                "type": true,
+                "size": true,
+                "content": {
+                  "query": "file.content",
+                  "select": {
+                    "template": "content.template"
+                  }
+                }
+              }
+            },
+            "pages": {
+              "query": "site.index.files.filterBy('type', '!=', 'image')",
+              "select": {
+                "id": true,
+                "url": true,
+                "type": true,
+                "size": true,
+                "content": {
+                  "query": "file.content",
+                  "select": {
+                    "template": "content.template"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "pages": {
+      "query": "site.children.sortBy('date', 'desc')",
+      "select": {
+        "id": true,
+        "status": true,
+        "template": true,
+        "unlisted": true,
+        "slug": true,
+        "date": true,
+        "title": true,
+        "num": true,
+        "uri": true,
+        "parent": "page.parent.id",
+        "language": {
+          "query": "kirby.languageCode"
+        },
+        "content": {
+          "query": "page",
+          "select": {
+            "blocks": "page.blocks",
+            "headline": "page.headline.kirbyText",
+            "description": true,
+            "headerImage": {
+              "query": "page.header_image.toFile",
+              "select": {
+                "origin": "file.url",
+                "src": "file.resize({{IMAGE_SRC}})",
+                "srcset": "file.srcset({{IMAGE_SRCSET}})"
+              }
+            },
+            "address": "page.address.yaml",
+            "email": true,
+            "phone": true,
+            "fax": true
+          }
+        },
+        "children": {
+          "query": "page.children.sortBy('date', 'desc')",
+          "select": {
+            "id": true,
+            "status": true,
+            "template": true,
+            "unlisted": true,
+            "slug": true,
+            "date": true,
+            "title": true,
+            "num": true,
+            "uri": true,
+            "parent": "page.parent.id",
+            "language": {
+              "query": "kirby.languageCode"
+            },
+            "event": {
+              "query": "page",
+              "select": {
+                "dates": "page.dates.toStructure"
+              }
+            },
+            "content": {
+              "query": "page",
+              "select": {
+                "headline": "page.headline.kirbyText",
+                "description": true,
+                "headerImage": {
+                  "query": "page.header_image.toFile",
+                  "select": {
+                    "origin": "file.url",
+                    "src": "file.resize({{IMAGE_SRC}})",
+                    "srcset": "file.srcset({{IMAGE_SRCSET}})"
+                  }
+                },
+                "blocks": "page.blocks",
+                "address": "page.address.yaml",
+                "email": true,
+                "phone": true,
+                "fax": true
+              }
+            },
+            "children": {
+              "query": "page.children.sortBy('date', 'desc')",
+              "select": {
+                "id": true,
+                "status": true,
+                "template": true,
+                "unlisted": true,
+                "slug": true,
+                "date": true,
+                "title": true,
+                "num": true,
+                "uri": true,
+                "parent": "page.parent.id",
+                "language": {
+                  "query": "kirby.languageCode"
+                },
+                "children": true
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
