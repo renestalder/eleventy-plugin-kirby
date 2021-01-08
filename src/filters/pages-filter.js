@@ -36,5 +36,9 @@ function getPagesByIds(pages, ids, languageCode) {
  * Builds the Url for a specific language
  */
 function urlForLanguage(page, languageCode) {
+  if (page.language === languageCode) {
+    return page._permalink;
+  }
+
   return page._translationIds[languageCode];
 }
