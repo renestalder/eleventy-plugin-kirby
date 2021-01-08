@@ -1,4 +1,4 @@
-const {createId} = require("../transformer")
+const { createId } = require("../transformer");
 
 module.exports = {
   getPageById,
@@ -9,7 +9,7 @@ function getPageById(pages, id, languageCode) {
   let page;
 
   if (languageCode) {
-    page = pages[createId({id}, languageCode)];
+    page = pages[createId({ id }, languageCode)];
   } else {
     page = pages[`${id}`];
   }
