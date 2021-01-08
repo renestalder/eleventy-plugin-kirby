@@ -61,6 +61,7 @@ module.exports = function (eleventyConfig) {
     );
     eleventyConfig.addFilter("pageById", pagesFilter.getPageById);
     eleventyConfig.addFilter("pagesByIds", pagesFilter.getPagesByIds);
+    eleventyConfig.addFilter("urlForLanguage", pagesFilter.urlForLanguage);
     eleventyConfig.addFilter("toBlocks", fieldsFilter.toBlocks);
     eleventyConfig.addFilter("file", filesFilter.getFile);
     eleventyConfig.addFilter("image", filesFilter.getImage);

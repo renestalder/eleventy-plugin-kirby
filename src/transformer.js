@@ -27,7 +27,10 @@ function createSchema(opts = {}) {
         if (opts.languages && opts.languages.length > 0) {
           _translationIds = opts.languages
             .filter((lang) => lang !== entity.language)
-            .map((lang) => createId(entity, lang));
+            .reduce((acc, lang) => {
+              acc[lang] = `/${createId(entity, lang)}`;
+              return acc;
+            }, {});
         }
 
         return {

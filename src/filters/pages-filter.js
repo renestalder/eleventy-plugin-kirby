@@ -3,6 +3,7 @@ const { createId } = require("../transformer");
 module.exports = {
   getPageById,
   getPagesByIds,
+  urlForLanguage,
 };
 
 function getPageById(pages, id, languageCode) {
@@ -29,4 +30,11 @@ function getPagesByIds(pages, ids, languageCode) {
   }
 
   return ids.map((id) => getPageById(pages, id, languageCode));
+}
+
+/**
+ * Builds the Url for a specific language
+ */
+function urlForLanguage(page, languageCode) {
+  return page._translationIds[languageCode];
 }
