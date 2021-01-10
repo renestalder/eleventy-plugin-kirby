@@ -1,0 +1,72 @@
+{
+  "language": "de",
+  "languages": ["en", "de"],
+  "pages": [
+    {
+      "id": "blog",
+      "status": "listed",
+      "template": "default",
+      "unlisted": "",
+      "slug": "blog",
+      "date": "",
+      "title": "Blog",
+      "num": 2,
+      "uri": "blog",
+      "language": "de",
+      "children": [
+        {
+          "id": "blog/article-1",
+          "status": "listed",
+          "template": "default",
+          "unlisted": "",
+          "slug": "article-1",
+          "date": "2020-10-27 17:45",
+          "title": "Article 1",
+          "num": 20201027,
+          "uri": "blog/article-1",
+          "language": "de",
+          "children": []
+        },
+        {
+          "id": "blog/article-2",
+          "status": "listed",
+          "template": "default",
+          "unlisted": "",
+          "slug": "article-2",
+          "date": "2020-10-27 17:45",
+          "title": "Article 2",
+          "num": 20201027,
+          "uri": "blog/article-2",
+          "language": "de",
+          "children": []
+        }
+      ]
+    },
+    {
+      "id": "error",
+      "status": "unlisted",
+      "template": "default",
+      "unlisted": "",
+      "slug": "error",
+      "date": "",
+      "title": "Error",
+      "num": null,
+      "uri": "error",
+      "language": "de",
+      "children": []
+    },
+    {
+      "id": "home",
+      "status": "listed",
+      "template": "default",
+      "unlisted": "",
+      "slug": "home",
+      "date": "",
+      "title": "Home",
+      "num": 1,
+      "uri": "home",
+      "language": "de",
+      "children": []
+    }
+  ]
+}

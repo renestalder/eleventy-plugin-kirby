@@ -4,7 +4,12 @@
   "description": "Eleventy (11ty) plugin to make the work with Kirby CMS easier",
   "main": ".eleventy.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "ava test/index.js",
+    "lint-staged": "lint-staged"
+  },
+  "hooks": {
+    "pre-commit": "npm run lint-staged",
+    "pre-push": "npm run test"
   },
   "keywords": [
     "11ty",
@@ -26,6 +31,20 @@
     "normalizr": "^3.6.1"
   },
   "devDependencies": {
+    "ava": "^3.15.0",
+    "husky": "^4.3.7",
+    "lint-staged": "^10.5.3",
     "prettier": "^2.2.1"
+  },
+  "ava": {
+    "failFast": false,
+    "files": [
+      "./test/*.js"
+    ]
+  },
+  "lint-staged": {
+    "*.{js,css,md,json}": [
+      "prettier --write"
+    ]
   }
 }
