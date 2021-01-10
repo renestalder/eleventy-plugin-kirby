@@ -3,9 +3,11 @@ module.exports = {
 };
 
 function log(message, obj) {
-  console.log(message);
+  if (process.env.DEBUG) {
+    console.log(message);
 
-  if (obj) {
-    console.dir(obj);
+    if (obj) {
+      console.dir(obj);
+    }
   }
 }

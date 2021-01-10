@@ -100,9 +100,20 @@ async function getAll(opts = defaultOptions) {
     opts.pagesQuery,
     opts._defaults.pagesQuery
   );
-  const requests = languages.map(async (code) =>
-    getData(baseQuery, { "X-Language": code })
-  );
+
+  logger.log(`Languages: ${languages}`);
+
+  let requests;
+
+  if (languages && languages.length > 0) {
+    // Get data per language
+    requests = languages.map(async (code) =>
+      getData(baseQuery, { "X-Language": code })
+    );
+  } else {
+    // Get data once
+    requests = [getData(baseQuery)];
+  }
 
   const pages = await Promise.all(requests);
   const db = transformer.dataNormalize(pages, { languages });

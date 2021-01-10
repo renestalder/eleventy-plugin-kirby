@@ -4,6 +4,16 @@ module.exports = {
   dataNormalize,
   createId,
 };
+/**
+ * Normalize the deeply nested Kirby API data to a flat, normalized object with relations between individual dependencies.
+ * @param  {object} data Response from the API
+ * @param  {object} [opts] Options
+ */
+function dataNormalize(data, opts) {
+  const schema = createSchema(opts);
+
+  return normalize(data, schema);
+}
 
 function createSchema(opts = {}) {
   opts = initDefaultOptions(opts);
@@ -16,16 +26,19 @@ function createSchema(opts = {}) {
       idAttribute: (value) => createId(value),
       processStrategy: (entity) => {
         // Ensure the homepage is the index.html in the root later
-        let _translationIds = [];
         const uri = entity.id === "home" ? "" : entity.uri;
         const _permalink =
           entity.id === "home"
             ? `/${entity.language}`
             : `/${entity.language}/${entity.uri}`;
 
-        // Enable querying of other languages of the same page
+        // Enable querying of other languages of the same page in a multilingial setup,
+        // by adding the _translationIds key to the page, holding an object of processed
+        // unique Ids to those pages, with the language code as key.
+        let _translationIds = [];
         if (opts.languages && opts.languages.length > 0) {
           _translationIds = opts.languages
+            // Exclude the current language of the page object
             .filter((lang) => lang !== entity.language)
             .reduce((acc, lang) => {
               acc[lang] = `/${createId(entity, lang)}`;
@@ -69,38 +82,36 @@ function createSchema(opts = {}) {
     uploads,
   };
 
+  if (opts.languages.length >= 2) {
+    const languages = new schema.Values("languages");
+
+    return [
+      {
+        ...resultSchema,
+        languages,
+      },
+    ];
+  }
+
   return resultSchema;
 }
 
-function createSchemai18n(opts) {
-  opts = initDefaultOptions(opts);
-
-  let resultSchema = createSchema(opts);
-  const languages = new schema.Values("languages");
-
-  resultSchema = {
-    languages,
-    ...resultSchema,
-  };
-
-  const i18nResultSchema = [resultSchema];
-
-  return i18nResultSchema;
-}
-
 function initDefaultOptions(opts = {}) {
-  opts.defaultLanguage = opts.defaultLanguage || "en";
   opts.languages = opts.languages || [];
 
   return opts;
 }
 
-function dataNormalize(data, opts) {
-  const schema =
-    opts?.languages?.length >= 2 ? createSchemai18n(opts) : createSchema(opts);
-  return normalize(data, schema);
-}
+/**
+ * Return unique identifier for a Kirby page, including language code if given
+ * @param  {Object} page Kirby page object
+ * @param  {string} [language] Language code
+ * @returns {string} Unique page identifier e.g. "de/news"
+ */
+function createId(page, language) {
+  if (language || page.language) {
+    return `${language || page.language}/${page.id}`;
+  }
 
-function createId(value, language) {
-  return `${language || value.language}/${value.id}`;
+  return page.id;
 }
