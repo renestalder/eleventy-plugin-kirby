@@ -1,4 +1,4 @@
-const { getAll } = require("eleventy-plugin-kirby");
+const { getAll } = require("../../../.eleventy");
 
 module.exports = async function () {
   const data = await getAll();

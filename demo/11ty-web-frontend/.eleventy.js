@@ -1,5 +1,5 @@
 require("dotenv").config({ debug: process.env.DEBUG });
-const eleventyPluginKirby = require("eleventy-plugin-kirby");
+const eleventyPluginKirby = require("../../.eleventy");
 
 module.exports = function (eleventyConfig) {
   eleventyConfig.addPlugin(eleventyPluginKirby);

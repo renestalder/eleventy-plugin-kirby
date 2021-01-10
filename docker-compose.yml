@@ -21,7 +21,7 @@ services:
       - 3000:3000
       - 3001:3001
     volumes:
-      - ./demo/11ty-web-frontend:/app:rw
-      - ./:/plugin:rw
+      - ./:/app:rw
+      - ./app/demo/kirbycms/
     depends_on:
       - kirbycms
