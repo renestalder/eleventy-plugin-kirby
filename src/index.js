@@ -19,7 +19,7 @@ const filesFilter = require("./filters/files-filter");
 const translationFilter = require("./filters/translations-filter");
 const templatesFilter = require("./filters/templates-filter");
 
-const ENDPOINT = process.env.API_KIRBYCMS_PATH;
+const ENDPOINT = `${process.env.API_KIRBYCMS_PATH}/api/query`;
 
 const PLACEHOLDER_IMAGE_SRC = "{{IMAGE_SRC}}";
 const PLACEHOLDER_IMAGE_SRCSET = "{{IMAGE_SRCSET}}";
