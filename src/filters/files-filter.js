@@ -10,7 +10,7 @@ module.exports = {
  * @return {object}
  */
 function file(site, filename) {
-  return site.entities.documents[id];
+  return site.entities.documents[filename];
 }
 
 /**
@@ -20,5 +20,5 @@ function file(site, filename) {
  * @return {object}
  */
 function image(site, filename) {
-  return site.entities.images[id];
+  return site.entities.images[filename];
 }
