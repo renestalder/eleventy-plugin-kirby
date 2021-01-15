@@ -1,12 +1,24 @@
 module.exports = {
-  getDocument,
-  getImage,
+  file,
+  image,
 };
 
-function getDocument(site, id) {
+/**
+ * Returns a specific file by filename (id)
+ * @param {object} site Kirby object
+ * @param {string} filename Filename/id of the file
+ * @return {object}
+ */
+function file(site, filename) {
   return site.entities.documents[id];
 }
 
-function getImage(site, id) {
+/**
+ * Returns a specific image by filename (id)
+ * @param {object} site Kirby object
+ * @param {string} filename Filename/id of the file
+ * @return {object}
+ */
+function image(site, filename) {
   return site.entities.images[id];
 }
