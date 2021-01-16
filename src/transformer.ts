@@ -1,21 +1,23 @@
-const { normalize, schema } = require("normalizr");
+import deepmerge = require("deepmerge");
+import { normalize, schema } from "normalizr";
+import { LanguageCode } from "./models/language-model";
+import { TransformerOptions } from "./models/transformer-options-model";
+import { TranslationIds } from "./models/translation-ids-model";
 
-module.exports = {
-  dataNormalize,
-  createId,
+const defaultTransFormerOptions: TransformerOptions = {
+  languages: [],
 };
+
 /**
  * Normalize the deeply nested Kirby API data to a flat, normalized object with relations between individual dependencies.
- * @param  {object} data Response from the API
- * @param  {object} [opts] Options
  */
-function dataNormalize(data, opts) {
+export function dataNormalize(data, opts) {
   const schema = createSchema(opts);
 
   return normalize(data, schema);
 }
 
-function createSchema(opts = {}) {
+function createSchema(opts: Partial<TransformerOptions> = {}) {
   opts = initDefaultOptions(opts);
 
   // Define a users schema
@@ -35,7 +37,7 @@ function createSchema(opts = {}) {
         // Enable querying of other languages of the same page in a multilingial setup,
         // by adding the _translationIds key to the page, holding an object of processed
         // unique Ids to those pages, with the language code as key.
-        let _translationIds = [];
+        let _translationIds: TranslationIds = null;
         if (opts.languages && opts.languages.length > 0) {
           _translationIds = opts.languages
             // Exclude the current language of the page object
@@ -83,12 +85,13 @@ function createSchema(opts = {}) {
   };
 
   if (opts.languages.length >= 2) {
-    const languages = new schema.Values("languages");
+    // const language = new schema.Entity("languages");
+    // const languages = new schema.Values(language);
 
     return [
       {
         ...resultSchema,
-        languages,
+        // languages,
       },
     ];
   }
@@ -96,19 +99,17 @@ function createSchema(opts = {}) {
   return resultSchema;
 }
 
-function initDefaultOptions(opts = {}) {
-  opts.languages = opts.languages || [];
-
-  return opts;
+/**
+ *
+ */
+function initDefaultOptions(opts: Partial<TransformerOptions> = {}) {
+  return deepmerge(defaultTransFormerOptions, opts);
 }
 
 /**
  * Return unique identifier for a Kirby page, including language code if given
- * @param  {Object} page Kirby page object
- * @param  {string} [language] Language code
- * @returns {string} Unique page identifier e.g. "de/news"
  */
-function createId(page, language) {
+export function createId(page, language?: LanguageCode) {
   if (language || page.language) {
     return `${language || page.language}/${page.id}`;
   }

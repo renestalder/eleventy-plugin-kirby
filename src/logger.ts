@@ -1,8 +1,4 @@
-module.exports = {
-  log,
-};
-
-function log(message, obj) {
+export function log(message: string, obj?: Object) {
   if (process.env.DEBUG) {
     console.log(message);
 

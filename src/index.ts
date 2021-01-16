@@ -6,18 +6,19 @@
 //  - kql plugin for Kirby CMS to be installed
 //  - A user with reading access to the panel setup
 //  - An .env config with the API url and user credentials
-const transformer = require("./transformer");
-const logger = require("./logger");
-const fs = require("fs");
-const path = require("path");
-const fetch = require("node-fetch");
-const merge = require("deepmerge");
-const pagesFilter = require("./filters/pages-filter");
-const fieldsFilter = require("./filters/fields-filter");
-const languageFilter = require("./filters/language-filter");
-const filesFilter = require("./filters/files-filter");
-const translationFilter = require("./filters/translations-filter");
-const templatesFilter = require("./filters/templates-filter");
+import { dataNormalize } from "./transformer";
+import { log } from "./logger";
+import * as fs from "fs";
+import * as path from "path";
+import deepmerge = require("deepmerge");
+// const fetch = require("node-fetch");
+import pagesFilter from "./filters/pages-filter";
+import fieldsFilter from "./filters/fields-filter";
+import languageFilter from "./filters/language-filter";
+import filesFilter from "./filters/files-filter";
+import translationFilter from "./filters/translations-filter";
+import templatesFilter from "./filters/templates-filter";
+import { PluginOptions } from "./models/plugin-options-model";
 
 const ENDPOINT = `${process.env.API_KIRBYCMS_PATH}/api/query`;
 
@@ -44,42 +45,26 @@ const defaultFetchOptions = {
   },
 };
 
-const defaultOptions = {
+const defaultOptions: PluginOptions = {
   languagesQuery: `${__dirname}/kql/get-languages.json`,
   pagesQuery: `${__dirname}/kql/get-pages.json`,
 };
 
-module.exports = function (eleventyConfig) {
+export default function addFilter(eleventyConfig) {
   if (eleventyConfig) {
-    eleventyConfig.addFilter(
-      "languagesByCodes",
-      languageFilter.getLanguagesByCodes
-    );
-    eleventyConfig.addFilter(
-      "languageByCode",
-      languageFilter.getLanguageByCode
-    );
-    eleventyConfig.addFilter("pageById", pagesFilter.getPageById);
-    eleventyConfig.addFilter("pagesByIds", pagesFilter.getPagesByIds);
-    eleventyConfig.addFilter("urlForLanguage", pagesFilter.urlForLanguage);
-    eleventyConfig.addFilter("toBlocks", fieldsFilter.toBlocks);
-    eleventyConfig.addFilter("file", filesFilter.file);
-    eleventyConfig.addFilter("image", filesFilter.image);
-    eleventyConfig.addFilter(
-      "fallbackTemplate",
-      templatesFilter.getTemplateOrFallback
-    );
-    eleventyConfig.addFilter("t", translationFilter.translate);
-    eleventyConfig.addFilter("translate", translationFilter.translate);
+    pagesFilter(eleventyConfig);
+    fieldsFilter(eleventyConfig);
+    languageFilter(eleventyConfig);
+    filesFilter(eleventyConfig);
+    translationFilter(eleventyConfig);
+    templatesFilter(eleventyConfig);
   }
-};
-
-module.exports.getAll = getAll;
+}
 
 /**
  * Returns all pages in all languages from Kirby
  */
-async function getAll(opts = defaultOptions) {
+export async function getAll(opts: Partial<PluginOptions> = defaultOptions) {
   opts = { ...defaultOptions, ...opts, _defaults: defaultOptions };
 
   opts.languagesQuery = path.relative(
@@ -88,20 +73,20 @@ async function getAll(opts = defaultOptions) {
   );
   opts.pagesQuery = path.relative(path.resolve(__dirname), opts.pagesQuery);
 
-  logger.log(`Querying languages via ${opts.languagesQuery}`);
+  log(`Querying languages via ${opts.languagesQuery}`);
   const languages = await getData(
     loadQueryFromFile(opts.languagesQuery),
     opts._defaults.languagesQuery
   );
 
   // Create multiple queryies per language as languages are retrieved by changing HTTP header
-  logger.log(`Querying pages via ${opts.pagesQuery}`);
+  log(`Querying pages via ${opts.pagesQuery}`);
   const baseQuery = loadQueryFromFile(
     opts.pagesQuery,
     opts._defaults.pagesQuery
   );
 
-  logger.log(`Languages: ${languages}`);
+  log(`Languages: ${languages}`);
 
   let requests;
 
@@ -116,7 +101,7 @@ async function getAll(opts = defaultOptions) {
   }
 
   const pages = await Promise.all(requests);
-  const db = transformer.dataNormalize(pages, { languages });
+  const db = dataNormalize(pages, { languages });
 
   try {
     fs.writeFileSync(
@@ -147,7 +132,7 @@ function loadQueryFromFile(relativePath, defaultQueryFile = null) {
 
   if (defaultQueryFile) {
     try {
-      queryDefaultFile = fs.readFileSync(defaultQueryFile, "utf8");
+      let queryDefaultFile = fs.readFileSync(defaultQueryFile, "utf8");
       queryDefaultFile = transforms(queryDefaultFile);
       defaultQuery = JSON.parse(queryDefaultFile);
     } catch (e) {
@@ -161,7 +146,7 @@ function loadQueryFromFile(relativePath, defaultQueryFile = null) {
 
     const query = JSON.parse(queryFile);
 
-    return merge(defaultQuery, query);
+    return deepmerge(defaultQuery, query);
   } catch (e) {
     throw new Error(e);
   }

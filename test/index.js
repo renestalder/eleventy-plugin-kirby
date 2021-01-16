@@ -1,6 +1,6 @@
 const fs = require("fs");
 const test = require("ava");
-const transformer = require("../src/transformer");
+const transformer = require("../dist/transformer");
 
 test("normalize single language page data", (t) => {
   const defaultJSON = loadJSONMock(
