@@ -20,6 +20,9 @@ import translationFilter from "./filters/translations-filter";
 import templatesFilter from "./filters/templates-filter";
 import { PluginOptions } from "./models/plugin-options-model";
 
+import defaultLanguagesQuery from "./kql/get-languages.json";
+import defaultPagesQuery from "./kql/get-pages.json";
+
 const ENDPOINT = `${process.env.API_KIRBYCMS_PATH}/api/query`;
 
 const PLACEHOLDER_IMAGE_SRC = "{{IMAGE_SRC}}";
@@ -45,9 +48,9 @@ const defaultFetchOptions = {
   },
 };
 
-const defaultOptions: PluginOptions = {
-  languagesQuery: `${__dirname}/kql/get-languages.json`,
-  pagesQuery: `${__dirname}/kql/get-pages.json`,
+const defaultOptions: PluginOptions<Object> = {
+  languagesQuery: defaultLanguagesQuery,
+  pagesQuery: defaultPagesQuery,
 };
 
 export default function addFilter(eleventyConfig) {
@@ -64,14 +67,16 @@ export default function addFilter(eleventyConfig) {
 /**
  * Returns all pages in all languages from Kirby
  */
-export async function getAll(opts: Partial<PluginOptions> = defaultOptions) {
-  opts = { ...defaultOptions, ...opts, _defaults: defaultOptions };
+export async function getAll(opts: Partial<PluginOptions<string>> = {}) {
+  opts = { ...opts, _defaults: defaultOptions };
 
-  opts.languagesQuery = path.relative(
-    path.resolve(__dirname),
-    opts.languagesQuery
-  );
-  opts.pagesQuery = path.relative(path.resolve(__dirname), opts.pagesQuery);
+  opts.languagesQuery = opts.languagesQuery
+    ? path.relative(path.resolve(__dirname), opts.languagesQuery)
+    : null;
+
+  opts.pagesQuery = opts.pagesQuery
+    ? path.relative(path.resolve(__dirname), opts.pagesQuery)
+    : null;
 
   log(`Querying languages via ${opts.languagesQuery}`);
   const languages = await getData(

@@ -1,5 +1,5 @@
-export interface PluginOptions {
-  languagesQuery: string;
-  pagesQuery: string;
-  _defaults?: PluginOptions;
+export interface PluginOptions<T = string> {
+  languagesQuery: T;
+  pagesQuery: T;
+  _defaults?: PluginOptions<Object>;
 }
