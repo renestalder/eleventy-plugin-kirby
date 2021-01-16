@@ -1,5 +1,6 @@
 import * as fs from "fs";
 import deepmerge = require("deepmerge");
+import fetch from "node-fetch";
 
 export const ENDPOINT = `${process.env.API_KIRBYCMS_PATH}/api/query`;
 
