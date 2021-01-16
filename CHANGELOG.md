@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.2.12](https://gitlab.com/renestalder/eleventy-plugin-kirby/compare/v0.2.11...v0.2.12) (2021-01-16)
+
+
+### Bug Fixes
+
+* **getAll:** use correct query for retrieving pages ([2b3c521](https://gitlab.com/renestalder/eleventy-plugin-kirby/commit/2b3c521736b37dd21ac12df11a08ed677d07bff0))
+
 ### [0.2.11](https://gitlab.com/renestalder/eleventy-plugin-kirby/compare/v0.2.10...v0.2.11) (2021-01-16)
 
 
