@@ -121,9 +121,7 @@ export async function getAll(opts: Partial<PluginOptions<string>> = {}) {
   return db;
 }
 
-function loadQueryFromFile(relativePath, defaultQueryFile = null) {
-  let defaultQuery = {};
-
+function loadQueryFromFile(relativePath, defaultQuery: object = {}) {
   const transforms = (queryStr) => {
     queryStr = queryStr.replace(PLACEHOLDER_IMAGE_SRC, DEFAULT_IMAGE_SRC);
 
@@ -134,16 +132,6 @@ function loadQueryFromFile(relativePath, defaultQueryFile = null) {
 
     return queryStr;
   };
-
-  if (defaultQueryFile) {
-    try {
-      let queryDefaultFile = fs.readFileSync(defaultQueryFile, "utf8");
-      queryDefaultFile = transforms(queryDefaultFile);
-      defaultQuery = JSON.parse(queryDefaultFile);
-    } catch (e) {
-      console.error(e);
-    }
-  }
 
   try {
     let queryFile = fs.readFileSync(`${__dirname}/${relativePath}`, "utf8");
