@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.2.11](https://gitlab.com/renestalder/eleventy-plugin-kirby/compare/v0.2.10...v0.2.11) (2021-01-16)
+
+
+### Features
+
+* add dataLog option to enable log file explicitly ([2bac0bd](https://gitlab.com/renestalder/eleventy-plugin-kirby/commit/2bac0bd5c7691cfcd7d957f642d1a067f3013577))
+
+
+### Bug Fixes
+
+* correctly handle path of input query files ([4621ea4](https://gitlab.com/renestalder/eleventy-plugin-kirby/commit/4621ea46e09474067c58e400813b35a653a29fec))
+
 ### [0.2.10](https://gitlab.com/renestalder/eleventy-plugin-kirby/compare/v0.2.9...v0.2.10) (2021-01-16)
 
 
