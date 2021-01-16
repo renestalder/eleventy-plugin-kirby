@@ -12,6 +12,12 @@ export interface PluginOptions<T = string> {
   pagesQuery: T;
 
   /**
+   * Write .eleventy-plugin-kirby-data-log.json to project folder, allowing to
+   * inspect the data that is passed to the templates
+   */
+  dataLog: boolean;
+
+  /**
    * Default plugin options for internal use
    * @private
    */

@@ -15,6 +15,7 @@ import defaultPagesQuery from "../kql/get-pages.json";
 const defaultOptions: PluginOptions<Object> = {
   languagesQuery: defaultLanguagesQuery,
   pagesQuery: defaultPagesQuery,
+  dataLog: false,
 };
 
 /**
@@ -58,14 +59,16 @@ export async function getAll(opts: Partial<PluginOptions<string>> = {}) {
   const pages = await Promise.all(requests);
   const db = dataNormalize(pages, { languages });
 
-  try {
-    fs.writeFileSync(
-      `${process.cwd()}/.kirby-data-log.json`,
-      JSON.stringify(db, null, 2),
-      "utf8"
-    );
-  } catch (e) {
-    console.log(`Error writing Kirby data log file: ${e}`);
+  if (opts.dataLog) {
+    try {
+      fs.writeFileSync(
+        `${process.cwd()}/.eleventy-plugin-kirby-data-log.json`,
+        JSON.stringify(db, null, 2),
+        "utf8"
+      );
+    } catch (e) {
+      console.error(`Error writing Kirby data log file: ${e}`);
+    }
   }
 
   return db;
