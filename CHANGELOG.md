@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.2.8](https://gitlab.com/renestalder/eleventy-plugin-kirby/compare/v0.2.7...v0.2.8) (2021-01-16)
+
+
+### Bug Fixes
+
+* ensure the plugin exports only one function per default ([448e189](https://gitlab.com/renestalder/eleventy-plugin-kirby/commit/448e189c9950981957d973ff37f6c368ec4b6bd8))
+* use object for default query loading in file handler ([5eee77f](https://gitlab.com/renestalder/eleventy-plugin-kirby/commit/5eee77f7915292173edf92178500c3e89f7790b0))
+
 ### [0.2.7](https://gitlab.com/renestalder/eleventy-plugin-kirby/compare/v0.2.6...v0.2.7) (2021-01-16)
 
 
