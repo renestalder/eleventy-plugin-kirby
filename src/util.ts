@@ -26,7 +26,10 @@ export const defaultFetchOptions = {
   },
 };
 
-export function loadQueryFromFile(relativePath, defaultQuery: object = {}) {
+export function loadQueryFromFile(
+  relativePath: string,
+  defaultQuery: object = {}
+) {
   const transforms = (queryStr) => {
     queryStr = queryStr.replace(PLACEHOLDER_IMAGE_SRC, DEFAULT_IMAGE_SRC);
 
@@ -39,12 +42,15 @@ export function loadQueryFromFile(relativePath, defaultQuery: object = {}) {
   };
 
   try {
-    let queryFile = fs.readFileSync(`${__dirname}/${relativePath}`, "utf8");
-    queryFile = transforms(queryFile);
+    if (relativePath) {
+      let queryFile = fs.readFileSync(`${__dirname}/${relativePath}`, "utf8");
+      queryFile = transforms(queryFile);
 
-    const query = JSON.parse(queryFile);
+      const query = JSON.parse(queryFile);
+      return deepmerge(defaultQuery, query);
+    }
 
-    return deepmerge(defaultQuery, query);
+    return defaultQuery;
   } catch (e) {
     throw new Error(e);
   }

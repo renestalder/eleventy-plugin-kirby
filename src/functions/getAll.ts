@@ -5,7 +5,10 @@ import * as path from "path";
 import { PluginOptions } from "../models/plugin-options-model";
 import { getData, loadQueryFromFile } from "../util";
 
+// @ts-ignore
 import defaultLanguagesQuery from "../kql/get-languages.json";
+
+// @ts-ignore
 import defaultPagesQuery from "../kql/get-pages.json";
 
 const defaultOptions: PluginOptions<Object> = {
@@ -30,8 +33,7 @@ export async function getAll(opts: Partial<PluginOptions<string>> = {}) {
 
   log(`Querying languages via ${opts.languagesQuery}`);
   const languages = await getData(
-    loadQueryFromFile(opts.languagesQuery),
-    opts._defaults.languagesQuery
+    loadQueryFromFile(opts.languagesQuery, opts._defaults.languagesQuery)
   );
 
   // Create multiple queryies per language as languages are retrieved by changing HTTP header
