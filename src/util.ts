@@ -27,10 +27,7 @@ export const defaultFetchOptions = {
   },
 };
 
-export function loadQueryFromFile(
-  relativePath: string,
-  defaultQuery: object = {}
-) {
+export function loadQueryFromFile(absolutePath: string): object {
   const transforms = (queryStr) => {
     queryStr = queryStr.replace(PLACEHOLDER_IMAGE_SRC, DEFAULT_IMAGE_SRC);
 
@@ -43,23 +40,22 @@ export function loadQueryFromFile(
   };
 
   try {
-    if (relativePath) {
-      let queryFile = fs.readFileSync(`${__dirname}/${relativePath}`, "utf8");
-      queryFile = transforms(queryFile);
+    let queryFile = fs.readFileSync(absolutePath, "utf8");
+    queryFile = transforms(queryFile);
 
-      const query = JSON.parse(queryFile);
-      return deepmerge(defaultQuery, query);
-    }
+    const query = JSON.parse(queryFile);
 
-    return defaultQuery;
+    return query;
   } catch (e) {
     throw new Error(e);
   }
+
+  return {};
 }
+
 /**
  * Get a list of all pages including their children
  */
-
 export async function getData(query, headers = {}) {
   console.log(`Querying ${ENDPOINT}`);
   if (headers !== {}) {

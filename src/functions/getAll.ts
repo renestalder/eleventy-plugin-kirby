@@ -2,6 +2,7 @@ import { dataNormalize } from "../transformer";
 import { log } from "../logger";
 import * as fs from "fs";
 import * as path from "path";
+import deepmerge from "deepmerge";
 import { PluginOptions } from "../models/plugin-options-model";
 import { getData, loadQueryFromFile } from "../util";
 
@@ -19,34 +20,31 @@ const defaultOptions: PluginOptions<Object> = {
 /**
  * Returns all pages in all languages from Kirby
  */
-
 export async function getAll(opts: Partial<PluginOptions<string>> = {}) {
   opts = { ...opts, _defaults: defaultOptions };
 
-  opts.languagesQuery = opts.languagesQuery
-    ? path.relative(path.resolve(__dirname), opts.languagesQuery)
-    : null;
-
-  opts.pagesQuery = opts.pagesQuery
-    ? path.relative(path.resolve(__dirname), opts.pagesQuery)
-    : null;
-
   log(`Querying languages via ${opts.languagesQuery}`);
   const languages = await getData(
-    loadQueryFromFile(opts.languagesQuery, opts._defaults.languagesQuery)
+    opts.languagesQuery
+      ? deepmerge(
+          opts._defaults.languagesQuery,
+          loadQueryFromFile(opts.languagesQuery)
+        )
+      : opts._defaults.languagesQuery
   );
 
   // Create multiple queryies per language as languages are retrieved by changing HTTP header
   log(`Querying pages via ${opts.pagesQuery}`);
-  const baseQuery = loadQueryFromFile(
-    opts.pagesQuery,
-    opts._defaults.pagesQuery
-  );
+  const baseQuery = opts.pagesQuery
+    ? deepmerge(
+        opts._defaults.languagesQuery,
+        loadQueryFromFile(opts.pagesQuery)
+      )
+    : opts._defaults.languagesQuery;
 
   log(`Languages: ${languages}`);
 
   let requests;
-
   if (languages && languages.length > 0) {
     // Get data per language
     requests = languages.map(async (code) =>
