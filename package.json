@@ -1,6 +1,6 @@
 {
   "name": "eleventy-plugin-kirby",
-  "version": "0.2.4",
+  "version": "0.2.5",
   "description": "Eleventy (11ty) plugin to make the work with Kirby CMS easier",
   "main": "dist/index.js",
   "files": [
@@ -11,7 +11,8 @@
     "prepublish": "npm run build && npm test",
     "test": "ava test/index.js",
     "lint-staged": "lint-staged",
-    "build": "tsc"
+    "build": "tsc",
+    "release": "standard-version"
   },
   "hooks": {
     "pre-commit": "npm run lint-staged",
@@ -42,6 +43,7 @@
     "husky": "^4.3.7",
     "lint-staged": "^10.5.3",
     "prettier": "^2.2.1",
+    "standard-version": "^9.1.0",
     "typescript": "^4.1.3"
   },
   "ava": {
