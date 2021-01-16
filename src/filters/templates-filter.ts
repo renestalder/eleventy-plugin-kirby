@@ -1,13 +1,20 @@
 import * as fs from "fs";
 
+/**
+ * @internal
+ */
 export default function addFilter(eleventyConfig) {
   eleventyConfig.addFilter(fallbackTemplate.name, fallbackTemplate);
 }
 
 /**
  * Checks for existence of given template file and returns name or returns name of default
+ * @category Filter
  */
-export function fallbackTemplate(templateName, fallbackTemplateName) {
+export function fallbackTemplate(
+  templateName: string,
+  fallbackTemplateName?: string
+): string {
   const checkFileExistsSync = (filepath) => {
     let flag = true;
     try {

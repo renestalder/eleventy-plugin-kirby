@@ -1,0 +1,6 @@
+{
+  "entryPoints": ["./src/"],
+  "excludePrivate": true,
+  "categorizeByGroup": true,
+  "hideGenerator": true
+}

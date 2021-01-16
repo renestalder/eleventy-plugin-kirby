@@ -14,6 +14,17 @@ import filesFilter from "./filters/files-filter";
 import translationFilter from "./filters/translations-filter";
 import templatesFilter from "./filters/templates-filter";
 
+/**
+ * @example
+ * ```js
+ * require("dotenv").config();
+ * const eleventyPluginKirby = require("eleventy-plugin-kirby");
+ *
+ * module.exports = function (eleventyConfig) {
+ *   eleventyConfig.addPlugin(eleventyPluginKirby);
+ * };
+ * ```
+ */
 function main(eleventyConfig) {
   if (eleventyConfig) {
     pagesFilter(eleventyConfig);

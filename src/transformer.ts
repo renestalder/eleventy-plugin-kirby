@@ -10,6 +10,8 @@ const defaultTransFormerOptions: TransformerOptions = {
 
 /**
  * Normalize the deeply nested Kirby API data to a flat, normalized object with relations between individual dependencies.
+ * @internal
+ * @ignore
  */
 export function dataNormalize(data, opts) {
   const schema = createSchema(opts);
@@ -17,6 +19,10 @@ export function dataNormalize(data, opts) {
   return normalize(data, schema);
 }
 
+/**
+ * @internal
+ * @ignore
+ */
 function createSchema(opts: Partial<TransformerOptions> = {}) {
   opts = initDefaultOptions(opts);
 
@@ -100,7 +106,8 @@ function createSchema(opts: Partial<TransformerOptions> = {}) {
 }
 
 /**
- *
+ * @internal
+ * @ignore
  */
 function initDefaultOptions(opts: Partial<TransformerOptions> = {}) {
   return deepmerge(defaultTransFormerOptions, opts);
@@ -108,6 +115,8 @@ function initDefaultOptions(opts: Partial<TransformerOptions> = {}) {
 
 /**
  * Return unique identifier for a Kirby page, including language code if given
+ * @internal
+ * @ignore
  */
 export function createId(page, language?: LanguageCode) {
   if (language || page.language) {

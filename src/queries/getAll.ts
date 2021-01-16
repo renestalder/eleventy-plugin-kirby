@@ -20,6 +20,33 @@ const defaultOptions: PluginOptions<Object> = {
 
 /**
  * Returns all pages in all languages from Kirby
+ * @category Queries
+ * @example
+ *
+ * **_data/kirby.js**:
+ * ```js
+ * const { getAll } = require("eleventy-plugin-kirby");
+ *
+ * module.exports = async function () {
+ *   const data = await getAll();
+ *   return data;
+ * };
+ * ```
+ * **pages.liquid**:
+ * ```html
+ * ---
+ * pagination:
+ *     data: kirby.entities.pages
+ *     size: 1
+ *     alias: data
+ *     resolve: values
+ *     addAllPagesToCollections: true
+ * permalink: "{{ data._permalink }}/index.html"
+ * tags: "data"
+ * ---
+ * <h1>{{data.title}}</h1>
+ * ```
+ * @returns Object of the API result
  */
 export async function getAll(opts: Partial<PluginOptions<string>> = {}) {
   opts = { ...opts, _defaults: defaultOptions };
