@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.2.10](https://gitlab.com/renestalder/eleventy-plugin-kirby/compare/v0.2.9...v0.2.10) (2021-01-16)
+
+
+### Bug Fixes
+
+* add missing fetch library ([1af65ae](https://gitlab.com/renestalder/eleventy-plugin-kirby/commit/1af65aec1021d6d30316b1c5ac86ae9985c9c601))
+
 ### [0.2.9](https://gitlab.com/renestalder/eleventy-plugin-kirby/compare/v0.2.8...v0.2.9) (2021-01-16)
 
 
