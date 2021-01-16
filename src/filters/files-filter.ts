@@ -1,6 +1,6 @@
 export default function addFilter(eleventyConfig) {
   eleventyConfig.addFilter(file.name, file);
-  eleventyConfig.addFulter(image.name, image);
+  eleventyConfig.addFilter(image.name, image);
 }
 
 export function file(site, id) {
