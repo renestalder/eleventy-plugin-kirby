@@ -26,8 +26,6 @@ The manual in the README might not be complete yet.
     -   [Usage](#usage)
         -   [Generate all pages](#generate-all-pages)
     -   [Reference](#reference)
-        -   [`getAll(options)`](#getalloptions)
-            -   [`options.pagesQuery`](#optionspagesquery)
     -   [Development](#development)
         -   [Development environment](#development-environment)
             -   [One-time setup](#one-time-setup)
@@ -109,6 +107,10 @@ To retrieve data from the CMS, you need a user with read access to all data
 
 ## Usage
 
+See [documentation](docs/modules.md) for all filters and query functions that
+are available. In the following section, we highlight some useful features to
+make it easier getting started with the plugin.
+
 ### Generate all pages
 
 The intendet way to use this plugin is to let it generate all public pages for
@@ -152,29 +154,7 @@ which work with the pagination option.
 
 ## Reference
 
-### `getAll(options)`
-
-Get all CMS data including pages, languages and files.
-
-#### `options.pagesQuery`
-
-The JSON file containing the kql query for requesting all the data. This will be
-merged with the default query.
-
-**Example:**
-
-_kirby.js_:
-
-```js
-const { getAll } = require("eleventy-plugin-kirby");
-
-const data = await getAll({
-    pagesQuery: `${__dirname}/get-pages.json`,
-});
-```
-
-Refer to the default query file in `src/kql/get-pages.json` of the plugin
-repository to understand what is queried by default.
+See [documentation](docs/modules.md).
 
 ## Development
 
