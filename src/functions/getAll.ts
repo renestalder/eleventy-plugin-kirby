@@ -37,10 +37,7 @@ export async function getAll(opts: Partial<PluginOptions<string>> = {}) {
   // Create multiple queryies per language as languages are retrieved by changing HTTP header
   log(`Querying pages via ${opts.pagesQuery}`);
   const baseQuery = opts.pagesQuery
-    ? deepmerge(
-        opts._defaults.languagesQuery,
-        loadQueryFromFile(opts.pagesQuery)
-      )
+    ? deepmerge(opts._defaults.pagesQuery, loadQueryFromFile(opts.pagesQuery))
     : opts._defaults.languagesQuery;
 
   log(`Languages: ${languages}`);
