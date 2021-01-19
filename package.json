@@ -9,6 +9,7 @@
   "types": "dist/index.d.ts",
   "scripts": {
     "prepublish": "npm run build && npm test",
+    "watch": "rm -rf ./dist && tsc --watch",
     "test": "ava test/index.js",
     "lint-staged": "lint-staged",
     "build": "rm -rf ./dist && tsc",
