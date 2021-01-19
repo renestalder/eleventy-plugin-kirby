@@ -1,9 +1,9 @@
-const { getAll } = require("../../../.eleventy");
+const { getAll } = require("../../../dist/queries/getAll");
 
 module.exports = async function () {
-  const data = await getAll();
-
-  console.log(data);
+  const data = await getAll({
+    dataLog: true,
+  });
 
   return data;
 };
