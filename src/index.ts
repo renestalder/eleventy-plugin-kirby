@@ -13,6 +13,10 @@ import languageFilter from "./filters/language-filter";
 import filesFilter from "./filters/files-filter";
 import translationFilter from "./filters/translations-filter";
 import templatesFilter from "./filters/templates-filter";
+import { PluginSettings } from "./models/plugin-options-model";
+import { getAll } from "./queries/getAll";
+
+export = main;
 
 /**
  * @example
@@ -25,7 +29,7 @@ import templatesFilter from "./filters/templates-filter";
  * };
  * ```
  */
-function main(eleventyConfig) {
+function main(eleventyConfig, settings: PluginSettings) {
   if (eleventyConfig) {
     pagesFilter(eleventyConfig);
     fieldsFilter(eleventyConfig);
@@ -35,5 +39,3 @@ function main(eleventyConfig) {
     templatesFilter(eleventyConfig);
   }
 }
-
-export = main;

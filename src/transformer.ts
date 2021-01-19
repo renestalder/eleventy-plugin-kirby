@@ -13,7 +13,7 @@ const defaultTransFormerOptions: TransformerOptions = {
  * @internal
  * @ignore
  */
-export function dataNormalize(data, opts) {
+export function dataNormalize(data, opts?) {
   const schema = createSchema(opts);
 
   return normalize(data, schema);
@@ -35,16 +35,18 @@ function createSchema(opts: Partial<TransformerOptions> = {}) {
       processStrategy: (entity) => {
         // Ensure the homepage is the index.html in the root later
         const uri = entity.id === "home" ? "" : entity.uri;
-        const _permalink =
-          entity.id === "home"
-            ? `/${entity.language}`
-            : `/${entity.language}/${entity.uri}`;
+        let _permalink = entity.id === "home" ? "/" : `/${entity.uri}`;
 
         // Enable querying of other languages of the same page in a multilingial setup,
         // by adding the _translationIds key to the page, holding an object of processed
         // unique Ids to those pages, with the language code as key.
         let _translationIds: TranslationIds = null;
         if (opts.languages && opts.languages.length > 0) {
+          _permalink =
+            entity.id === "home"
+              ? `/${entity.language}`
+              : `/${entity.language}/${entity.uri}`;
+
           _translationIds = opts.languages
             // Exclude the current language of the page object
             .filter((lang) => lang !== entity.language)

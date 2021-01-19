@@ -1,18 +1,19 @@
 import { dataNormalize } from "../transformer";
-import { log } from "../logger";
+import { log } from "../util/logger";
 import * as fs from "fs";
-import * as path from "path";
 import deepmerge from "deepmerge";
-import { PluginOptions } from "../models/plugin-options-model";
-import { getData, loadQueryFromFile } from "../util";
+import { PluginSettings } from "../models/plugin-options-model";
+import { getData } from "../util/api";
+import { loadQueryFromFile } from "../util/queries";
 
 // @ts-ignore
 import defaultLanguagesQuery from "../kql/get-languages.json";
 
 // @ts-ignore
 import defaultPagesQuery from "../kql/get-pages.json";
+import { getLanguages } from "./getLanguages";
 
-const defaultOptions: PluginOptions<Object> = {
+const defaultOptions: PluginSettings<Object> = {
   languagesQuery: defaultLanguagesQuery,
   pagesQuery: defaultPagesQuery,
   dataLog: false,
@@ -48,52 +49,51 @@ const defaultOptions: PluginOptions<Object> = {
  * ```
  * @returns Object of the API result
  */
-export async function getAll(opts: Partial<PluginOptions<string>> = {}) {
+export async function getAll(opts: Partial<PluginSettings> = {}) {
   opts = { ...opts, _defaults: defaultOptions };
+  let baseQuery = opts._defaults.pagesQuery;
 
-  log(`Querying languages via ${opts.languagesQuery}`);
-  const languages = await getData(
-    opts.languagesQuery
-      ? deepmerge(
-          opts._defaults.languagesQuery,
-          loadQueryFromFile(opts.languagesQuery)
-        )
-      : opts._defaults.languagesQuery
-  );
+  if (opts.pagesQuery) {
+    const userDefinedPagesQuery = loadQueryFromFile(opts.pagesQuery);
+    baseQuery = deepmerge(baseQuery, userDefinedPagesQuery);
+  }
 
-  // Create multiple queryies per language as languages are retrieved by changing HTTP header
-  log(`Querying pages via ${opts.pagesQuery}`);
-  const baseQuery = opts.pagesQuery
-    ? deepmerge(opts._defaults.pagesQuery, loadQueryFromFile(opts.pagesQuery))
-    : opts._defaults.languagesQuery;
+  const languages = await getLanguages(opts);
 
-  log(`Languages: ${languages}`);
+  let requests = [getData(baseQuery)];
+  let data;
 
-  let requests;
+  log(`Get all data`);
   if (languages && languages.length > 0) {
     // Get data per language
+    // Create multiple queryies per language as languages are retrieved by changing HTTP header
+    // There is currently no other way around this.
     requests = languages.map(async (code) =>
       getData(baseQuery, { "X-Language": code })
     );
+
+    data = await Promise.all(requests);
   } else {
-    // Get data once
-    requests = [getData(baseQuery)];
+    data = await getData(baseQuery);
   }
 
-  const pages = await Promise.all(requests);
-  const db = dataNormalize(pages, { languages });
+  if (data.length === 0) {
+    log(`...No data found.`);
+  } else {
+    const db = dataNormalize(data, { languages });
 
-  if (opts.dataLog) {
-    try {
-      fs.writeFileSync(
-        `${process.cwd()}/.eleventy-plugin-kirby-data-log.json`,
-        JSON.stringify(db, null, 2),
-        "utf8"
-      );
-    } catch (e) {
-      console.error(`Error writing Kirby data log file: ${e}`);
+    if (opts.dataLog) {
+      try {
+        fs.writeFileSync(
+          `${process.cwd()}/.eleventy-plugin-kirby-data-log.json`,
+          JSON.stringify(db, null, 2),
+          "utf8"
+        );
+      } catch (e) {
+        console.error(`Error writing Kirby data log file: ${e}`);
+      }
     }
-  }
 
-  return db;
+    return db;
+  }
 }

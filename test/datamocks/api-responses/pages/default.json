@@ -1,7 +1,16 @@
 {
   "language": null,
   "languages": [],
-  "mainNavigation": [],
+  "uploads": {
+    "images": {
+      "site": [],
+      "pages": []
+    },
+    "documents": {
+      "site": [],
+      "pages": []
+    }
+  },
   "pages": [
     {
       "id": "blog",
@@ -13,35 +22,11 @@
       "title": "Blog",
       "num": 2,
       "uri": "blog",
+      "parent": "blog",
       "language": null,
-      "children": [
-        {
-          "id": "blog/article-1",
-          "status": "listed",
-          "template": "default",
-          "unlisted": "",
-          "slug": "article-1",
-          "date": "2020-10-27 17:45",
-          "title": "Article 1",
-          "num": 20201027,
-          "uri": "blog/article-1",
-          "language": null,
-          "children": []
-        },
-        {
-          "id": "blog/article-2",
-          "status": "listed",
-          "template": "default",
-          "unlisted": "",
-          "slug": "article-2",
-          "date": "2020-10-27 17:45",
-          "title": "Article 2",
-          "num": 20201027,
-          "uri": "blog/article-2",
-          "language": null,
-          "children": []
-        }
-      ]
+      "content": {
+        "title": "Blog"
+      }
     },
     {
       "id": "error",
@@ -53,8 +38,11 @@
       "title": "Error",
       "num": null,
       "uri": "error",
+      "parent": "error",
       "language": null,
-      "children": []
+      "content": {
+        "title": "Error"
+      }
     },
     {
       "id": "home",
@@ -66,8 +54,11 @@
       "title": "Home",
       "num": 1,
       "uri": "home",
+      "parent": "home",
       "language": null,
-      "children": []
+      "content": {
+        "title": "Home"
+      }
     }
   ]
 }

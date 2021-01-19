@@ -1,4 +1,6 @@
-export interface PluginOptions<T = string> {
+import { Options } from "./kirby/options-model";
+
+export interface PluginSettings<T = string> {
   /**
    * The query for getting all language information. Will be merged with
    * the default query.
@@ -18,8 +20,18 @@ export interface PluginOptions<T = string> {
   dataLog: boolean;
 
   /**
+   * Reflects the Kirby configuration options that have similar
+   * effect on the client-side. Those options do not change any
+   * settings that are part of the config.php of your Kirby instance.
+   * Those affect your queries only and therefore, only a subset
+   * of the original options are available.
+   * @see https://getkirby.com/docs/reference/system/options
+   */
+  options?: Partial<Options>;
+
+  /**
    * Default plugin options for internal use
    * @private
    */
-  _defaults?: PluginOptions<Object>;
+  _defaults?: PluginSettings<Object>;
 }

@@ -1,6 +1,11 @@
 const fs = require("fs");
 const test = require("ava");
 const transformer = require("../dist/transformer");
+const {
+  applyQueryProcessors,
+  PLACEHOLDER_IMAGE_SRC,
+  PLACEHOLDER_IMAGE_SRCSET,
+} = require("../dist/util/queries");
 
 test("normalize single language page data", (t) => {
   const defaultJSON = loadJSONMock(
@@ -28,7 +33,7 @@ test("normalize single language page data", (t) => {
 
   t.is(
     Object.keys(normalizedData.entities.pages).length,
-    5,
+    3,
     "All pages should be listed, normalized in entities"
   );
 
@@ -53,6 +58,23 @@ test("normalize multilingual page data", (t) => {
   );
 
   t.log(normalizedData);
+});
+
+test("query transforms", (t) => {
+  const pagesQuery = loadJSONMock("../src/kql/get-pages.json");
+
+  const processedQuery = applyQueryProcessors(pagesQuery);
+  t.log(processedQuery);
+  t.log(JSON.stringify(processedQuery).replace("IMAGE_SRC", "HELLO WORLD"));
+
+  t.truthy(
+    processedQuery.indexOf(PLACEHOLDER_IMAGE_SRC) === -1,
+    "Placeholder for image src should be replaced"
+  );
+  t.truthy(
+    processedQuery.indexOf(PLACEHOLDER_IMAGE_SRCSET) === -1,
+    "Placeholder for image srcset should be replaced"
+  );
 });
 
 function loadJSONMock(path) {

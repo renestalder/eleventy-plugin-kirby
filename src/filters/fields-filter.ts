@@ -1,3 +1,5 @@
+import { log } from "../util/logger";
+
 /**
  * @internal
  */
@@ -12,7 +14,7 @@ export function toBlocks(blocksField) {
   try {
     return JSON.parse(blocksField);
   } catch (e) {
-    console.log(e);
+    log(e);
   }
 
   return [];
