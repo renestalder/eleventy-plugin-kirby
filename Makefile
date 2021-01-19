@@ -8,3 +8,7 @@ clear-lock:
 
 test:
 	docker-compose exec 11ty-web-frontend npm test
+
+serve:
+	docker-compose up -d kirbycms
+	docker-compose up 11ty-web-frontend
