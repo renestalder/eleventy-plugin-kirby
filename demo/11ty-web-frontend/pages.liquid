@@ -3,8 +3,9 @@ pagination:
   data: kirby.entities.pages
   size: 1
   alias: data
+  resolve: values
   addAllPagesToCollections: true
-permalink: "{{ data.permalink }}"
+permalink: "{{ data._permalink }}/index.html"
 tags: "data"
 ---
 
