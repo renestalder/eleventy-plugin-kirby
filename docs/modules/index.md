@@ -12,7 +12,7 @@
 
 ### export&#x3D;
 
-▸ **export=**(`eleventyConfig`: *any*): *void*
+▸ **export=**(`eleventyConfig`: *any*, `settings`: [*PluginSettings*](../interfaces/models/plugin-options-model.pluginsettings.md)): *void*
 
 **`example`** 
 ```js
@@ -29,7 +29,8 @@ module.exports = function (eleventyConfig) {
 Name | Type |
 ------ | ------ |
 `eleventyConfig` | *any* |
+`settings` | [*PluginSettings*](../interfaces/models/plugin-options-model.pluginsettings.md) |
 
 **Returns:** *void*
 
-Defined in: src/index.ts:28
+Defined in: src/index.ts:32

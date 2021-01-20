@@ -16,3 +16,7 @@ export interface Page<N = string[]> {
   _permalink: string;
   _translationIds: string[];
 }
+
+export function isPage(obj: any): obj is Page {
+  return obj.id && obj.title;
+}

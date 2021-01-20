@@ -25,6 +25,7 @@
           "num": 20201027,
           "uri": "blog/article-1",
           "language": "en",
+          "parent": "blog",
           "children": []
         },
         {
@@ -38,6 +39,21 @@
           "num": 20201027,
           "uri": "blog/article-2",
           "language": "en",
+          "parent": "blog",
+          "children": []
+        },
+        {
+          "id": "blog/article-3",
+          "status": "listed",
+          "template": "random",
+          "unlisted": "",
+          "slug": "article-3",
+          "date": "2020-10-27 17:45",
+          "title": "Article 3",
+          "num": 20201027,
+          "uri": "blog/article-3",
+          "language": "en",
+          "parent": "blog",
           "children": []
         }
       ]

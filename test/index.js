@@ -1,6 +1,7 @@
 const fs = require("fs");
 const test = require("ava");
 const transformer = require("../dist/transformer");
+const { templateSiblings } = require("../dist/filters/page-filter");
 const {
   applyQueryProcessors,
   PLACEHOLDER_IMAGE_SRC,
@@ -53,7 +54,7 @@ test("normalize multilingual page data", (t) => {
 
   t.is(
     Object.keys(normalizedData.entities.pages).length,
-    10,
+    12,
     "All pages should be listed, normalized in entities, flattened in all languages"
   );
 
@@ -80,3 +81,33 @@ test("query transforms", (t) => {
 function loadJSONMock(path) {
   return JSON.parse(fs.readFileSync(`${__dirname}/${path}`, "utf8"));
 }
+
+test("Filter: page.templateSiblings", (t) => {
+  const languages = ["en", "de"];
+  const de = loadJSONMock("datamocks/api-responses/pages/i18n-de.json");
+  const en = loadJSONMock("datamocks/api-responses/pages/i18n-en.json");
+  const dataToNormalize = [de, en];
+  const kirby = transformer.dataNormalize(dataToNormalize, {
+    languages,
+  });
+
+  const id = transformer.createId(
+    kirby.entities.pages["en/blog/article-1"].parent,
+    kirby.entities.pages["en/blog/article-1"].language
+  );
+
+  const blogPage = kirby.entities.pages["en/blog/article-1"];
+  const resultWithSelf = templateSiblings(kirby, blogPage);
+  const resultWithoutSelf = templateSiblings(kirby, blogPage, false);
+
+  t.is(
+    resultWithSelf.length,
+    2,
+    "The found siblings, including the given page, should be exactly 2"
+  );
+  t.is(
+    resultWithoutSelf.length,
+    1,
+    "The found siblings, excluding the given page, should be exactly 1"
+  );
+});

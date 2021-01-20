@@ -10,10 +10,11 @@
   "scripts": {
     "prepublish": "npm run build && npm test",
     "watch": "rm -rf ./dist && tsc --watch",
-    "test": "ava test/index.js",
+    "test": "npm run build && ava test/index.js",
     "lint-staged": "lint-staged",
     "build": "rm -rf ./dist && tsc",
-    "release": "standard-version"
+    "release": "standard-version",
+    "docs": "typedoc"
   },
   "hooks": {
     "pre-commit": "npm run lint-staged",

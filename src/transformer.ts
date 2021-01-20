@@ -1,5 +1,6 @@
 import deepmerge = require("deepmerge");
 import { normalize, schema } from "normalizr";
+import { isPage, Page } from "./models/kirby/page-model";
 import { LanguageCode } from "./models/language-model";
 import { TransformerOptions } from "./models/transformer-options-model";
 import { TranslationIds } from "./models/translation-ids-model";
@@ -120,10 +121,20 @@ function initDefaultOptions(opts: Partial<TransformerOptions> = {}) {
  * @internal
  * @ignore
  */
-export function createId(page, language?: LanguageCode) {
-  if (language || page.language) {
-    return `${language || page.language}/${page.id}`;
+export function createId(page: Page | string, language?: LanguageCode) {
+  if (isPage(page)) {
+    if (language || page.language) {
+      return `${language || page.language}/${page.id}`;
+    }
+
+    return page.id;
+  } else if (typeof page === "string") {
+    if (language) {
+      return `${language}/${page}`;
+    }
+
+    return page;
   }
 
-  return page.id;
+  return null;
 }

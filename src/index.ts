@@ -14,7 +14,7 @@ import filesFilter from "./filters/files-filter";
 import translationFilter from "./filters/translations-filter";
 import templatesFilter from "./filters/templates-filter";
 import { PluginSettings } from "./models/plugin-options-model";
-import { getAll } from "./queries/getAll";
+import pageFilter from "./filters/page-filter";
 
 export = main;
 
@@ -32,6 +32,7 @@ export = main;
 function main(eleventyConfig, settings: PluginSettings) {
   if (eleventyConfig) {
     pagesFilter(eleventyConfig);
+    pageFilter(eleventyConfig);
     fieldsFilter(eleventyConfig);
     languageFilter(eleventyConfig);
     filesFilter(eleventyConfig);

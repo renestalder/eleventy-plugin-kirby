@@ -22,4 +22,4 @@ Name | Type |
 
 **Returns:** *any*
 
-Defined in: src/filters/fields-filter.ts:11
+Defined in: src/filters/fields-filter.ts:13

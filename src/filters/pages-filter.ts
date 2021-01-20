@@ -24,7 +24,7 @@ export function pageById(
   let page;
 
   if (languageCode) {
-    page = pages[createId({ id }, languageCode)];
+    page = pages[createId(id, languageCode)];
   } else {
     page = pages[`${id}`];
   }

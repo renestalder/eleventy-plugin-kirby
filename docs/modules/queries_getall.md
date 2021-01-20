@@ -12,7 +12,7 @@
 
 ### getAll
 
-▸ **getAll**(`opts?`: *Partial*<[*PluginOptions*](../interfaces/models/plugin-options-model.pluginoptions.md)<*string*\>\>): *Promise*<*NormalizedSchema*<{ [key: string]: { [key: string]: T;  } \| *undefined*;  }, *any*\>\>
+▸ **getAll**(`opts?`: *Partial*<[*PluginSettings*](../interfaces/models/plugin-options-model.pluginsettings.md)\>): *Promise*<*NormalizedSchema*<{ [key: string]: { [key: string]: T;  } \| *undefined*;  }, *any*\>\>
 
 Returns all pages in all languages from Kirby
 
@@ -46,10 +46,10 @@ tags: "data"
 
 Name | Type | Default value |
 ------ | ------ | ------ |
-`opts` | *Partial*<[*PluginOptions*](../interfaces/models/plugin-options-model.pluginoptions.md)<*string*\>\> | ... |
+`opts` | *Partial*<[*PluginSettings*](../interfaces/models/plugin-options-model.pluginsettings.md)\> | ... |
 
 **Returns:** *Promise*<*NormalizedSchema*<{ [key: string]: { [key: string]: T;  } \| *undefined*;  }, *any*\>\>
 
 Object of the API result
 
-Defined in: src/queries/getAll.ts:51
+Defined in: src/queries/getAll.ts:52

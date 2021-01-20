@@ -6,4 +6,4 @@
 
 ### Interfaces
 
-- [PluginOptions](../interfaces/models/plugin-options-model.pluginoptions.md)
+- [PluginSettings](../interfaces/models/plugin-options-model.pluginsettings.md)

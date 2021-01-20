@@ -20,11 +20,11 @@ Returns any page from the content folder, except for drafts
 
 #### Parameters:
 
-| Name            | Type                                                                                                                             |
-| --------------- | -------------------------------------------------------------------------------------------------------------------------------- |
-| `pages`         | [*EntityItems*](../interfaces/models/kirby/kirby-model.entityitems.md)<[*Page*](../interfaces/models/kirby/page-model.page.md)\> |
-| `id`            | *string*                                                                                                                         |
-| `languageCode?` | [*LanguageCode*](models_language_model.md#languagecode)                                                                          |
+Name | Type |
+------ | ------ |
+`pages` | [*EntityItems*](../interfaces/models/kirby/kirby-model.entityitems.md)<[*Page*](../interfaces/models/kirby/page-model.page.md)\> |
+`id` | *string* |
+`languageCode?` | [*LanguageCode*](models_language_model.md#languagecode) |
 
 **Returns:** [*Page*](../interfaces/models/kirby/page-model.page.md)
 
@@ -40,11 +40,11 @@ Returns list of pages by their ids
 
 #### Parameters:
 
-| Name            | Type                                                                                                                             |
-| --------------- | -------------------------------------------------------------------------------------------------------------------------------- |
-| `pages`         | [*EntityItems*](../interfaces/models/kirby/kirby-model.entityitems.md)<[*Page*](../interfaces/models/kirby/page-model.page.md)\> |
-| `ids`           | *string*[]                                                                                                                       |
-| `languageCode?` | [*LanguageCode*](models_language_model.md#languagecode)                                                                          |
+Name | Type |
+------ | ------ |
+`pages` | [*EntityItems*](../interfaces/models/kirby/kirby-model.entityitems.md)<[*Page*](../interfaces/models/kirby/page-model.page.md)\> |
+`ids` | *string*[] |
+`languageCode?` | [*LanguageCode*](models_language_model.md#languagecode) |
 
 **Returns:** [*Page*](../interfaces/models/kirby/page-model.page.md)[]
 
@@ -60,10 +60,10 @@ Builds the Url for a specific language
 
 #### Parameters:
 
-| Name           | Type                                                    |
-| -------------- | ------------------------------------------------------- |
-| `page`         | [*Page*](../interfaces/models/kirby/page-model.page.md) |
-| `languageCode` | [*LanguageCode*](models_language_model.md#languagecode) |
+Name | Type |
+------ | ------ |
+`page` | [*Page*](../interfaces/models/kirby/page-model.page.md) |
+`languageCode` | [*LanguageCode*](models_language_model.md#languagecode) |
 
 **Returns:** *string*
 
