@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.2.16](https://gitlab.com/renestalder/eleventy-plugin-kirby/compare/v0.2.15...v0.2.16) (2021-01-20)
+
+
+### Features
+
+* **filters:** add templateSiblings filter ([b81d3f4](https://gitlab.com/renestalder/eleventy-plugin-kirby/commit/b81d3f44afbe51c88bab4fd0762ae380f6da4a8d))
+
+
+### Bug Fixes
+
+* put page children into page query ([88628b1](https://gitlab.com/renestalder/eleventy-plugin-kirby/commit/88628b1a2dacafbdaaeb59596beb9c3f98e01b76))
+
 ### [0.2.15](https://gitlab.com/renestalder/eleventy-plugin-kirby/compare/v0.2.14...v0.2.15) (2021-01-20)
 
 ### [0.2.14](https://gitlab.com/renestalder/eleventy-plugin-kirby/compare/v0.2.13...v0.2.14) (2021-01-20)
