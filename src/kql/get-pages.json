@@ -79,42 +79,42 @@
         "language": {
           "query": "kirby.languageCode"
         },
-        "content": true
-      },
-      "children": {
-        "query": "page.children.sortBy('date', 'desc')",
-        "select": {
-          "id": true,
-          "status": true,
-          "template": true,
-          "unlisted": true,
-          "slug": true,
-          "date": true,
-          "title": true,
-          "num": true,
-          "uri": true,
-          "parent": "page.parent.id",
-          "language": {
-            "query": "kirby.languageCode"
-          },
-          "content": true,
-          "children": {
-            "query": "page.children.sortBy('date', 'desc')",
-            "select": {
-              "id": true,
-              "status": true,
-              "template": true,
-              "unlisted": true,
-              "slug": true,
-              "date": true,
-              "title": true,
-              "num": true,
-              "uri": true,
-              "parent": "page.parent.id",
-              "language": {
-                "query": "kirby.languageCode"
-              },
-              "children": true
+        "content": true,
+        "children": {
+          "query": "page.children.sortBy('date', 'desc')",
+          "select": {
+            "id": true,
+            "status": true,
+            "template": true,
+            "unlisted": true,
+            "slug": true,
+            "date": true,
+            "title": true,
+            "num": true,
+            "uri": true,
+            "parent": "page.parent.id",
+            "language": {
+              "query": "kirby.languageCode"
+            },
+            "content": true,
+            "children": {
+              "query": "page.children.sortBy('date', 'desc')",
+              "select": {
+                "id": true,
+                "status": true,
+                "template": true,
+                "unlisted": true,
+                "slug": true,
+                "date": true,
+                "title": true,
+                "num": true,
+                "uri": true,
+                "parent": "page.parent.id",
+                "language": {
+                  "query": "kirby.languageCode"
+                },
+                "children": true
+              }
             }
           }
         }
