@@ -1,5 +1,5 @@
 import { dataNormalize } from "../transformer";
-import { log } from "../util/logger";
+import { log, logFs } from "../util/logger";
 import * as fs from "fs";
 import deepmerge from "deepmerge";
 import { PluginSettings } from "../models/plugin-options-model";
@@ -16,7 +16,7 @@ import { getLanguages } from "./getLanguages";
 const defaultOptions: PluginSettings<Object> = {
   languagesQuery: defaultLanguagesQuery,
   pagesQuery: defaultPagesQuery,
-  dataLog: false,
+  debug: false,
 };
 
 /**
@@ -64,6 +64,7 @@ export async function getAll(opts: Partial<PluginSettings> = {}) {
   let data;
 
   log(`Get all data`);
+  logFs("base-query", baseQuery, opts);
   if (languages && languages.length > 0) {
     // Get data per language
     // Create multiple queryies per language as languages are retrieved by changing HTTP header
@@ -77,23 +78,13 @@ export async function getAll(opts: Partial<PluginSettings> = {}) {
     data = await getData(baseQuery);
   }
 
-  if (data.length === 0) {
+  if (!data || data.length === 0) {
     log(`...No data found.`);
   } else {
+    logFs("base-result", data, opts);
     const db = dataNormalize(data, { languages });
 
-    if (opts.dataLog) {
-      try {
-        fs.writeFileSync(
-          `${process.cwd()}/.eleventy-plugin-kirby-data-log.json`,
-          JSON.stringify(db, null, 2),
-          "utf8"
-        );
-      } catch (e) {
-        console.error(`Error writing Kirby data log file: ${e}`);
-      }
-    }
-
+    logFs("kirby", db, opts);
     return db;
   }
 }

@@ -1,7 +1,7 @@
 import deepmerge from "deepmerge";
 import { PluginSettings } from "../models/plugin-options-model";
 import { getData } from "../util/api";
-import { log } from "../util/logger";
+import { log, logFs } from "../util/logger";
 import { loadQueryFromFile } from "../util/queries";
 
 export async function getLanguages(opts: Partial<PluginSettings>) {
@@ -13,12 +13,14 @@ export async function getLanguages(opts: Partial<PluginSettings>) {
   }
 
   log(`Get languages`);
+  logFs("languages-query", query, opts);
   const languages = await getData(query);
 
-  if (languages.length === 0) {
+  if (!languages || languages.length === 0) {
     log("...No languages found. Assuming single language setup.");
   } else {
     log("Languages retrieved", languages);
+    logFs("languages-result", languages, opts);
   }
 
   return languages;

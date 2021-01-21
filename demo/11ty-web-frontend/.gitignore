@@ -2,4 +2,4 @@ dist
 node_modules
 .env
 .npm
-.eleventy-plugin-kirby-data-log.json
+.eleventy-plugin-kirby
