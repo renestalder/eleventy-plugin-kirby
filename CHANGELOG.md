@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.3.0](https://gitlab.com/renestalder/eleventy-plugin-kirby/compare/v0.2.16...v0.3.0) (2021-01-21)
+
+
+### ⚠ BREAKING CHANGES
+
+* **logger:** The plugin option `dataLog` was renamed to `debug`
+and the log files are now stored in a subfolder
+`.evelenty-plugin-kirby`, which should be added to .gitignore.
+
+* **logger:** add more verbose logs ([b00553f](https://gitlab.com/renestalder/eleventy-plugin-kirby/commit/b00553f1a86513c5f689b814cf5dbd15a02011db))
+
 ### [0.2.16](https://gitlab.com/renestalder/eleventy-plugin-kirby/compare/v0.2.15...v0.2.16) (2021-01-20)
 
 
