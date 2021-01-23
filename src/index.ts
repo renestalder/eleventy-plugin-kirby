@@ -7,14 +7,8 @@
 //  - A user with reading access to the panel setup
 //  - An .env config with the API url and user credentials
 // const fetch = require("node-fetch");
-import pagesFilter from "./filters/pages-filter";
-import fieldsFilter from "./filters/fields-filter";
-import languageFilter from "./filters/language-filter";
-import filesFilter from "./filters/files-filter";
-import translationFilter from "./filters/translations-filter";
-import templatesFilter from "./filters/templates-filter";
+import addFilters from "./filters/fields-filter";
 import { PluginSettings } from "./models/plugin-options-model";
-import pageFilter from "./filters/page-filter";
 
 export = main;
 
@@ -31,12 +25,6 @@ export = main;
  */
 function main(eleventyConfig, settings: PluginSettings) {
   if (eleventyConfig) {
-    pagesFilter(eleventyConfig);
-    pageFilter(eleventyConfig);
-    fieldsFilter(eleventyConfig);
-    languageFilter(eleventyConfig);
-    filesFilter(eleventyConfig);
-    translationFilter(eleventyConfig);
-    templatesFilter(eleventyConfig);
+    addFilters(eleventyConfig);
   }
 }
