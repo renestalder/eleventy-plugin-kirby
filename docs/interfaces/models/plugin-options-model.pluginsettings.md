@@ -18,19 +18,19 @@ Name | Default |
 
 ### Properties
 
-- [dataLog](plugin-options-model.pluginsettings.md#datalog)
+- [debug](plugin-options-model.pluginsettings.md#debug)
 - [languagesQuery](plugin-options-model.pluginsettings.md#languagesquery)
 - [options](plugin-options-model.pluginsettings.md#options)
 - [pagesQuery](plugin-options-model.pluginsettings.md#pagesquery)
 
 ## Properties
 
-### dataLog
+### debug
 
-• **dataLog**: *boolean*
+• **debug**: *boolean*
 
-Write .eleventy-plugin-kirby-data-log.json to project folder, allowing to
-inspect the data that is passed to the templates
+Write to .eleventy-plugin-kirby folder, allowing to
+inspect the queries, API results and the data that is passed to the templates
 
 Defined in: src/models/plugin-options-model.ts:20
 

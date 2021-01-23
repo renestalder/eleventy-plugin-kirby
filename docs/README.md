@@ -57,6 +57,9 @@ Then install the plugin via npm:
 $ npm install eleventy-plugin-kirby
 ```
 
+Optionally, add `.eleventy-plugin-kirby` to your `.gitignore`. This is a
+temporary folder storing debug logs when activated with the `debug` option.
+
 #### Configuration
 
 Add the plugin to your `.eleventy.js` configuration. You need a user in your
