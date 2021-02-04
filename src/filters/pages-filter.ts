@@ -2,6 +2,7 @@ import { EntityItems } from "../models/kirby/kirby-model";
 import { Page } from "../models/kirby/page-model";
 import { LanguageCode } from "../models/language-model";
 import { createId } from "../transformer";
+import { log } from "../util/logger";
 
 /**
  * @internal
@@ -10,6 +11,7 @@ export default function addFilter(eleventyConfig) {
   eleventyConfig.addFilter(pageById.name, pageById);
   eleventyConfig.addFilter(pagesByIds.name, pagesByIds);
   eleventyConfig.addFilter(urlForLanguage.name, urlForLanguage);
+  eleventyConfig.addFilter(sortBy.name, sortBy);
 }
 
 /**
@@ -64,4 +66,41 @@ export function urlForLanguage(page: Page, languageCode: LanguageCode): string {
   }
 
   return page._translationIds[languageCode];
+}
+
+/**
+ * Sort by given field. Only supports one level of sorting e.g. "date", "desc"
+ * in comparison to the infinite level sorting in Kirby e.g. "date, "desc", "title", "asc"
+ * @category Filter
+ * @example liquid.js
+ * ```html
+ * {{ people | sortBy: "lastname", "asc" }}
+ * ```
+ * @param {Object[]} list Array of objects
+ * @param {string[]} args Arguments
+ * @return {string[]}
+ */
+export function sortBy(list: Object[], ...args: string[]) {
+  const array = [...list];
+  const field = args[0];
+  const direction = args[1] || "asc";
+
+  if (!["asc", "desc"].includes(direction)) {
+    log(`${direction} is not a valid sort direction for sortBy filter`);
+    return list;
+  }
+
+  return array.sort((a, b) => {
+    if (a[field] && b[field]) {
+      if (a[field] > b[field]) {
+        return direction === "asc" ? 1 : -1;
+      }
+
+      if (a[field] < b[field]) {
+        return direction === "asc" ? -1 : 1;
+      }
+    }
+
+    return 0;
+  });
 }

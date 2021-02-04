@@ -2,6 +2,7 @@ const fs = require("fs");
 const test = require("ava");
 const transformer = require("../dist/transformer");
 const { templateSiblings } = require("../dist/filters/page-filter");
+const { sortBy } = require("../dist/filters/pages-filter");
 const {
   applyQueryProcessors,
   PLACEHOLDER_IMAGE_SRC,
@@ -110,4 +111,38 @@ test("Filter: page.templateSiblings", (t) => {
     1,
     "The found siblings, excluding the given page, should be exactly 1"
   );
+});
+
+test("Filter: sortBy", (t) => {
+  const testList = [
+    {
+      num: 2,
+      title: "Test Number 2",
+    },
+    {
+      num: 4,
+      title: "Test Number 4",
+    },
+    {
+      num: 1,
+      title: "Test Number 1",
+    },
+  ];
+
+  const sortedListAsc = sortBy(testList, "num", "asc");
+  const sortedListDesc = sortBy(testList, "num", "desc");
+
+  t.is(
+    testList[2],
+    sortedListAsc[0],
+    "List should sort correctly in ascending direction"
+  );
+  t.is(
+    testList[1],
+    sortedListDesc[0],
+    "List should sort correctly in descending direction"
+  );
+
+  t.log(testList);
+  t.log(sortedListDesc);
 });

@@ -8,6 +8,7 @@
 
 - [pageById](filters_pages_filter.md#pagebyid)
 - [pagesByIds](filters_pages_filter.md#pagesbyids)
+- [sortBy](filters_pages_filter.md#sortby)
 - [urlForLanguage](filters_pages_filter.md#urlforlanguage)
 
 ## Filter Functions
@@ -28,7 +29,7 @@ Name | Type |
 
 **Returns:** [*Page*](../interfaces/models/kirby/page-model.page.md)
 
-Defined in: src/filters/pages-filter.ts:19
+Defined in: src/filters/pages-filter.ts:21
 
 ___
 
@@ -48,7 +49,32 @@ Name | Type |
 
 **Returns:** [*Page*](../interfaces/models/kirby/page-model.page.md)[]
 
-Defined in: src/filters/pages-filter.ts:45
+Defined in: src/filters/pages-filter.ts:47
+
+___
+
+### sortBy
+
+▸ **sortBy**(`list`: Object[], ...`args`: *string*[]): Object[]
+
+Sort by given field. Only supports one level of sorting e.g. "date", "desc"
+in comparison to the infinite level sorting in Kirby e.g. "date, "desc", "title", "asc"
+
+**`example`** liquid.js
+```html
+{{ people | sortBy: "lastname", "asc" }}
+```
+
+#### Parameters:
+
+Name | Type | Description |
+------ | ------ | ------ |
+`list` | Object[] | Array of objects   |
+`...args` | *string*[] | Arguments   |
+
+**Returns:** Object[]
+
+Defined in: src/filters/pages-filter.ts:83
 
 ___
 
@@ -67,4 +93,4 @@ Name | Type |
 
 **Returns:** *string*
 
-Defined in: src/filters/pages-filter.ts:61
+Defined in: src/filters/pages-filter.ts:63
