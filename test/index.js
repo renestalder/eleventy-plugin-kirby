@@ -151,12 +151,19 @@ test("Filter: pages.findBy", (t) => {
   const testSet = {
     "page-1": {
       template: "company",
+      language: "de",
     },
     "page-2": {
       template: "index",
+      language: "en",
     },
     "page-3": {
       template: "home",
+      language: "de",
+    },
+    "page-4": {
+      template: "index",
+      language: "de",
     },
   };
 
@@ -166,5 +173,13 @@ test("Filter: pages.findBy", (t) => {
     testSet["page-2"],
     foundPage,
     "Found page should equal one and an exact match"
+  );
+
+  const foundPageWithLanguage = findBy(testSet, "template", "index", "de");
+
+  t.is(
+    testSet["page-4"],
+    foundPageWithLanguage,
+    "Found page should equal one and an exact match from the given language"
   );
 });

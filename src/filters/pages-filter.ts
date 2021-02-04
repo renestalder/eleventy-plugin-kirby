@@ -120,7 +120,10 @@ export function sortBy(list: Object[], ...args: string[]) {
 export function findBy<T = Kirby["entities"]["pages"]>(
   pages: T,
   attribute: string,
-  value: string
+  value: string,
+  languageCode?: LanguageCode
 ): T {
-  return Object.values(pages).find((page) => page[attribute] === value);
+  return Object.values(pages)
+    .filter((page) => (languageCode ? page.language === languageCode : true))
+    .find((page) => page[attribute] === value);
 }
