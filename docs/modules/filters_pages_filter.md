@@ -6,12 +6,44 @@
 
 ### Filter Functions
 
+- [findBy](filters_pages_filter.md#findby)
 - [pageById](filters_pages_filter.md#pagebyid)
 - [pagesByIds](filters_pages_filter.md#pagesbyids)
 - [sortBy](filters_pages_filter.md#sortby)
 - [urlForLanguage](filters_pages_filter.md#urlforlanguage)
 
 ## Filter Functions
+
+### findBy
+
+▸ **findBy**<T\>(`pages`: T, `attribute`: *string*, `value`: *string*): T
+
+Find a single element by an attribute and its value
+
+**`example`** liquid.js
+```html
+{{ kirby.entities.pages | findBy: "template", "contact" }}
+```
+
+#### Type parameters:
+
+Name | Default |
+------ | ------ |
+`T` | [*EntityItems*](../interfaces/models/kirby/kirby-model.entityitems.md)<[*Page*](../interfaces/models/kirby/page-model.page.md)<*string*[]\\>\\> |
+
+#### Parameters:
+
+Name | Type |
+------ | ------ |
+`pages` | T |
+`attribute` | *string* |
+`value` | *string* |
+
+**Returns:** T
+
+Defined in: src/filters/pages-filter.ts:120
+
+___
 
 ### pageById
 
@@ -29,7 +61,7 @@ Name | Type |
 
 **Returns:** [*Page*](../interfaces/models/kirby/page-model.page.md)
 
-Defined in: src/filters/pages-filter.ts:21
+Defined in: src/filters/pages-filter.ts:22
 
 ___
 
@@ -49,7 +81,7 @@ Name | Type |
 
 **Returns:** [*Page*](../interfaces/models/kirby/page-model.page.md)[]
 
-Defined in: src/filters/pages-filter.ts:47
+Defined in: src/filters/pages-filter.ts:48
 
 ___
 
@@ -74,7 +106,7 @@ Name | Type | Description |
 
 **Returns:** Object[]
 
-Defined in: src/filters/pages-filter.ts:83
+Defined in: src/filters/pages-filter.ts:84
 
 ___
 
@@ -93,4 +125,4 @@ Name | Type |
 
 **Returns:** *string*
 
-Defined in: src/filters/pages-filter.ts:63
+Defined in: src/filters/pages-filter.ts:64

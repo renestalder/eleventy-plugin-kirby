@@ -2,7 +2,7 @@ const fs = require("fs");
 const test = require("ava");
 const transformer = require("../dist/transformer");
 const { templateSiblings } = require("../dist/filters/page-filter");
-const { sortBy } = require("../dist/filters/pages-filter");
+const { sortBy, findBy } = require("../dist/filters/pages-filter");
 const {
   applyQueryProcessors,
   PLACEHOLDER_IMAGE_SRC,
@@ -145,4 +145,26 @@ test("Filter: sortBy", (t) => {
 
   t.log(testList);
   t.log(sortedListDesc);
+});
+
+test("Filter: pages.findBy", (t) => {
+  const testSet = {
+    "page-1": {
+      template: "company",
+    },
+    "page-2": {
+      template: "index",
+    },
+    "page-3": {
+      template: "home",
+    },
+  };
+
+  const foundPage = findBy(testSet, "template", "index");
+
+  t.is(
+    testSet["page-2"],
+    foundPage,
+    "Found page should equal one and an exact match"
+  );
 });

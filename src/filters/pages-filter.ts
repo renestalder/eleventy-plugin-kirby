@@ -1,4 +1,4 @@
-import { EntityItems } from "../models/kirby/kirby-model";
+import { EntityItems, Kirby } from "../models/kirby/kirby-model";
 import { Page } from "../models/kirby/page-model";
 import { LanguageCode } from "../models/language-model";
 import { createId } from "../transformer";
@@ -12,6 +12,7 @@ export default function addFilter(eleventyConfig) {
   eleventyConfig.addFilter(pagesByIds.name, pagesByIds);
   eleventyConfig.addFilter(urlForLanguage.name, urlForLanguage);
   eleventyConfig.addFilter(sortBy.name, sortBy);
+  eleventyConfig.addFilter(findBy.name, findBy);
 }
 
 /**
@@ -103,4 +104,23 @@ export function sortBy(list: Object[], ...args: string[]) {
 
     return 0;
   });
+}
+
+/**
+ * Find a single element by an attribute and its value
+ * @category Filter
+ * @example liquid.js
+ * ```html
+ * {{ kirby.entities.pages | findBy: "template", "contact" }}
+ * ```
+ * @param {string} attribute
+ * @param {string} value
+ * @return {Object[]}
+ */
+export function findBy<T = Kirby["entities"]["pages"]>(
+  pages: T,
+  attribute: string,
+  value: string
+): T {
+  return Object.values(pages).find((page) => page[attribute] === value);
 }
