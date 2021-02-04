@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.3.2](https://gitlab.com/renestalder/eleventy-plugin-kirby/compare/v0.3.1...v0.3.2) (2021-02-04)
+
+
+### Features
+
+* **filters:** add pages.findBy filter ([0d2b228](https://gitlab.com/renestalder/eleventy-plugin-kirby/commit/0d2b228854a6dc65b423260c52b5406f4c6d3721))
+
 ### [0.3.1](https://gitlab.com/renestalder/eleventy-plugin-kirby/compare/v0.3.0...v0.3.1) (2021-02-04)
 
 
