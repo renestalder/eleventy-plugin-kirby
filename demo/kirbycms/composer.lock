@@ -157,16 +157,16 @@
         },
         {
             "name": "getkirby/cms",
-            "version": "3.5.0",
+            "version": "3.5.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/getkirby/kirby.git",
-                "reference": "0d2751af7cb478df14f30fac47fe9a2cd3b38114"
+                "reference": "dbd8d2216eeec429d0f19ebea430de8347e7f073"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/getkirby/kirby/zipball/0d2751af7cb478df14f30fac47fe9a2cd3b38114",
-                "reference": "0d2751af7cb478df14f30fac47fe9a2cd3b38114",
+                "url": "https://api.github.com/repos/getkirby/kirby/zipball/dbd8d2216eeec429d0f19ebea430de8347e7f073",
+                "reference": "dbd8d2216eeec429d0f19ebea430de8347e7f073",
                 "shasum": ""
             },
             "require": {
@@ -184,15 +184,16 @@
             },
             "type": "kirby-cms",
             "autoload": {
-                "files": [
-                    "config/setup.php"
-                ],
+                "psr-4": {
+                    "Kirby\\": "src/"
+                },
                 "classmap": [
                     "dependencies/"
                 ],
-                "psr-4": {
-                    "Kirby\\": "src/"
-                }
+                "files": [
+                    "config/setup.php",
+                    "config/helpers.php"
+                ]
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
@@ -224,7 +225,7 @@
                     "type": "custom"
                 }
             ],
-            "time": "2020-12-15T08:09:43+00:00"
+            "time": "2021-02-09T15:43:43+00:00"
         },
         {
             "name": "getkirby/composer-installer",
