@@ -81,7 +81,7 @@ Required environment variables:
 
 ```sh
 # URL to the Kirby CMS installation
-API_KIRBYCMS_URL="https://example.com"
+API_KIRBYCMS_PATH="https://example.com"
 
 # API user
 API_KIRBYCMS_USER="user@example.com"
