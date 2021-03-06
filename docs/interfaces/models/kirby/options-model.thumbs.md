@@ -32,7 +32,7 @@ Set default configuration for thumbs
 
 • **autoOrient**: *boolean*
 
-Defined in: src/models/kirby/options-model.ts:30
+Defined in: src/models/kirby/options-model.ts:34
 
 ___
 
@@ -40,7 +40,7 @@ ___
 
 • **blur**: *boolean*
 
-Defined in: src/models/kirby/options-model.ts:32
+Defined in: src/models/kirby/options-model.ts:36
 
 ___
 
@@ -48,7 +48,7 @@ ___
 
 • **crop**: *boolean*
 
-Defined in: src/models/kirby/options-model.ts:31
+Defined in: src/models/kirby/options-model.ts:35
 
 ___
 
@@ -56,7 +56,7 @@ ___
 
 • **grayscale**: *boolean*
 
-Defined in: src/models/kirby/options-model.ts:33
+Defined in: src/models/kirby/options-model.ts:37
 
 ___
 
@@ -64,7 +64,7 @@ ___
 
 • **height**: *number*
 
-Defined in: src/models/kirby/options-model.ts:34
+Defined in: src/models/kirby/options-model.ts:38
 
 ___
 
@@ -72,7 +72,7 @@ ___
 
 • **presets**: [*ThumbPreset*](options-model.thumbpreset.md)
 
-Defined in: src/models/kirby/options-model.ts:17
+Defined in: src/models/kirby/options-model.ts:21
 
 ___
 
@@ -80,7 +80,7 @@ ___
 
 • **quality**: *number*
 
-Defined in: src/models/kirby/options-model.ts:35
+Defined in: src/models/kirby/options-model.ts:39
 
 ___
 
@@ -88,7 +88,7 @@ ___
 
 • **srcsets**: [*ThumbPresetList*](options-model.thumbpresetlist.md)
 
-Defined in: src/models/kirby/options-model.ts:18
+Defined in: src/models/kirby/options-model.ts:22
 
 ___
 
@@ -96,4 +96,4 @@ ___
 
 • **width**: *number*
 
-Defined in: src/models/kirby/options-model.ts:36
+Defined in: src/models/kirby/options-model.ts:40

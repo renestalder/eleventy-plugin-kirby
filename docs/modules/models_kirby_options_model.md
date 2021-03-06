@@ -6,6 +6,7 @@
 
 ### Interfaces
 
+- [CustomOptions](../interfaces/models/kirby/options-model.customoptions.md)
 - [Options](../interfaces/models/kirby/options-model.options.md)
 - [ThumbPreset](../interfaces/models/kirby/options-model.thumbpreset.md)
 - [ThumbPresetList](../interfaces/models/kirby/options-model.thumbpresetlist.md)

@@ -52,4 +52,4 @@ Name | Type | Default value |
 
 Object of the API result
 
-Defined in: src/queries/getAll.ts:52
+Defined in: src/queries/getAll.ts:53

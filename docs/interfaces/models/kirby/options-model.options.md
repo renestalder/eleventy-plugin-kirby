@@ -13,7 +13,9 @@ Those affect your queries only.
 
 ## Hierarchy
 
-* **Options**
+* [*CustomOptions*](options-model.customoptions.md)
+
+  ↳ **Options**
 
 ## Table of contents
 

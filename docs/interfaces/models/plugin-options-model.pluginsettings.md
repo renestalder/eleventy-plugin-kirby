@@ -20,6 +20,7 @@ Name | Default |
 
 - [debug](plugin-options-model.pluginsettings.md#debug)
 - [languagesQuery](plugin-options-model.pluginsettings.md#languagesquery)
+- [omitLanguages](plugin-options-model.pluginsettings.md#omitlanguages)
 - [options](plugin-options-model.pluginsettings.md#options)
 - [pagesQuery](plugin-options-model.pluginsettings.md#pagesquery)
 
@@ -32,7 +33,7 @@ Name | Default |
 Write to .eleventy-plugin-kirby folder, allowing to
 inspect the queries, API results and the data that is passed to the templates
 
-Defined in: src/models/plugin-options-model.ts:20
+Defined in: src/models/plugin-options-model.ts:22
 
 ___
 
@@ -44,6 +45,14 @@ The query for getting all language information. Will be merged with
 the default query.
 
 Defined in: src/models/plugin-options-model.ts:8
+
+___
+
+### omitLanguages
+
+• **omitLanguages**: *string*[]
+
+Defined in: src/models/plugin-options-model.ts:16
 
 ___
 
@@ -59,7 +68,7 @@ of the original options are available.
 
 **`see`** https://getkirby.com/docs/reference/system/options
 
-Defined in: src/models/plugin-options-model.ts:30
+Defined in: src/models/plugin-options-model.ts:32
 
 ___
 

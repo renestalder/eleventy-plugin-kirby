@@ -16,7 +16,7 @@
 
 ### findBy
 
-▸ **findBy**<T\>(`pages`: T, `attribute`: *string*, `value`: *string*): T
+▸ **findBy**<T\>(`pages`: T, `attribute`: *string*, `value`: *string*, `languageCode?`: [*LanguageCode*](models_language_model.md#languagecode)): T
 
 Find a single element by an attribute and its value
 
@@ -38,6 +38,7 @@ Name | Type |
 `pages` | T |
 `attribute` | *string* |
 `value` | *string* |
+`languageCode?` | [*LanguageCode*](models_language_model.md#languagecode) |
 
 **Returns:** T
 
