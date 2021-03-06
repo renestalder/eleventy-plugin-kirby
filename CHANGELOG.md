@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.3.6](https://gitlab.com/renestalder/eleventy-plugin-kirby/compare/v0.3.5...v0.3.6) (2021-03-06)
+
+
+### Bug Fixes
+
+* **filters:** handle one language setups in urlForLanguage ([cdc710c](https://gitlab.com/renestalder/eleventy-plugin-kirby/commit/cdc710c0509481cbb04dc0155f7257b7e35b3808))
+
 ### [0.3.5](https://gitlab.com/renestalder/eleventy-plugin-kirby/compare/v0.3.4...v0.3.5) (2021-03-06)
 
 

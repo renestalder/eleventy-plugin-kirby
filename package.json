@@ -1,6 +1,6 @@
 {
   "name": "eleventy-plugin-kirby",
-  "version": "0.3.5",
+  "version": "0.3.6",
   "description": "Eleventy (11ty) plugin to make the work with Kirby CMS easier",
   "main": "dist/index.js",
   "files": [
