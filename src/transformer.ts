@@ -48,13 +48,15 @@ function createSchema(opts: Partial<TransformerOptions> = {}) {
               ? `/${entity.language}`
               : `/${entity.language}/${entity.uri}`;
 
-          _translationIds = opts.languages
-            // Exclude the current language of the page object
-            .filter((lang) => lang !== entity.language)
-            .reduce((acc, lang) => {
-              acc[lang] = `/${createId(entity, lang)}`;
-              return acc;
-            }, {});
+          if (opts.languages.length > 1) {
+            _translationIds = opts.languages
+              // Exclude the current language of the page object
+              .filter((lang) => lang !== entity.language)
+              .reduce((acc, lang) => {
+                acc[lang] = `/${createId(entity, lang)}`;
+                return acc;
+              }, {});
+          }
         }
 
         return {
