@@ -66,6 +66,10 @@ export function urlForLanguage(page: Page, languageCode: LanguageCode): string {
     return page._permalink;
   }
 
+  if (!page._translationIds || page._translationIds.length === 0) {
+    return page._permalink;
+  }
+
   return page._translationIds[languageCode];
 }
 
