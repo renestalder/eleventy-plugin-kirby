@@ -21,6 +21,7 @@ export async function getLanguages(opts: Partial<PluginSettings>) {
   } else {
     log("Languages retrieved", languages);
     logFs("languages-result", languages, opts);
+    return languages.filter((lang) => !opts.omitLanguages.includes(lang));
   }
 
   return languages;

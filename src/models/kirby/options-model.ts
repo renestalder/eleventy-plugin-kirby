@@ -5,8 +5,12 @@
  * Those affect your queries only.
  * @see https://getkirby.com/docs/reference/system/options
  */
-export interface Options {
+export interface Options extends CustomOptions {
   thumbs: Thumbs;
+}
+
+export interface CustomOptions {
+  [key: string]: any;
 }
 
 /**

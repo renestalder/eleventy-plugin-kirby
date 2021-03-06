@@ -17,6 +17,7 @@ const defaultOptions: PluginSettings<Object> = {
   languagesQuery: defaultLanguagesQuery,
   pagesQuery: defaultPagesQuery,
   debug: false,
+  omitLanguages: [],
 };
 
 /**

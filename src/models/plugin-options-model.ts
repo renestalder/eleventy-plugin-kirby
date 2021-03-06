@@ -13,6 +13,8 @@ export interface PluginSettings<T = string> {
    */
   pagesQuery: T;
 
+  omitLanguages: string[];
+
   /**
    * Write to .eleventy-plugin-kirby folder, allowing to
    * inspect the queries, API results and the data that is passed to the templates
