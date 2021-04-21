@@ -1,10 +1,4 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "extends": ["config:base"],
-  "enabled": true,
-  "endpoint": "https://gitlab.com/api/v4/",
-  "onboarding": false,
-  "platform": "gitlab",
-  "rangeStrategy": "update-lockfile",
-  "skipInstalls": true
+  "extends": ["gitlab>renestalder-hq/infrastructure/renovate//presets/default"]
 }
