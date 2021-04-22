@@ -13,7 +13,7 @@
   "author": "René Stalder <mail@renestalder.me",
   "license": "ISC",
   "dependencies": {
-    "@11ty/eleventy": "^0.11.1",
+    "@11ty/eleventy": "^0.12.0",
     "dotenv": "^8.2.0"
   }
 }
