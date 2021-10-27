@@ -14,9 +14,14 @@ export interface Page<N = string[]> {
   content: object;
   children: N;
   _permalink: string;
-  _translationIds: string[];
+  _translations: Record<string, PageTranslationMeta>;
 }
 
+export type PageTranslationMeta = Pick<
+  Page,
+  "id" | "status" | "slug" | "language" | "_permalink"
+>;
+
 export function isPage(obj: any): obj is Page {
-  return obj.id && obj.title;
+  return obj?.id && obj?.title;
 }

@@ -1,5 +1,5 @@
 import { EntityItems, Kirby } from "../models/kirby/kirby-model";
-import { Page } from "../models/kirby/page-model";
+import { Page, PageTranslationMeta } from "../models/kirby/page-model";
 import { LanguageCode } from "../models/language-model";
 import { createId } from "../transformer";
 import { log } from "../util/logger";
@@ -66,11 +66,15 @@ export function urlForLanguage(page: Page, languageCode: LanguageCode): string {
     return page._permalink;
   }
 
-  if (!page._translationIds || page._translationIds.length === 0) {
+  if (!page._translations || !Object.keys(page._translations)?.length) {
     return page._permalink;
   }
 
-  return page._translationIds[languageCode];
+  if (!page._translations[languageCode]?._permalink) {
+    return page._permalink;
+  }
+
+  return page._translations[languageCode]._permalink;
 }
 
 /**

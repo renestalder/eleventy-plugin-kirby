@@ -17,7 +17,45 @@ const defaultTransFormerOptions: TransformerOptions = {
 export function dataNormalize(data, opts?) {
   const schema = createSchema(opts);
 
-  return normalize(data, schema);
+  const normalizeData = normalize(data, schema);
+
+  // Fill the _translationIds
+  if (opts?.languages?.length > 1) {
+    const translationProps = ({
+      id,
+      status,
+      slug,
+      language,
+      _permalink,
+    }): Page["_translations"] => ({ id, status, slug, language, _permalink });
+
+    for (const [entityGroupName, entityGroup] of Object.entries(
+      normalizeData.entities
+    )) {
+      for (const [entityName, entity] of Object.entries(entityGroup)) {
+        if (isPage(entity)) {
+          const { id, uri, slug } = entity;
+
+          const _translationIds = opts.languages
+            .filter((lang) => lang !== entity.language)
+            .reduce((acc, lang) => {
+              const translatedPage = entityGroup[`${lang}/${id}`] as Page;
+
+              if (translatedPage?._permalink) {
+                acc[lang] = translationProps(translatedPage);
+                return acc;
+              }
+
+              return acc;
+            }, {});
+
+          entity._translations = _translationIds;
+        }
+      }
+    }
+  }
+
+  return normalizeData;
 }
 
 /**
@@ -47,23 +85,12 @@ function createSchema(opts: Partial<TransformerOptions> = {}) {
             entity.id === "home"
               ? `/${entity.language}`
               : `/${entity.language}/${entity.uri}`;
-
-          if (opts.languages.length > 1) {
-            _translationIds = opts.languages
-              // Exclude the current language of the page object
-              .filter((lang) => lang !== entity.language)
-              .reduce((acc, lang) => {
-                acc[lang] = `/${createId(entity, lang)}`;
-                return acc;
-              }, {});
-          }
         }
 
         return {
           ...entity,
           uri,
           _permalink,
-          _translationIds,
         };
       },
     }
@@ -123,10 +150,18 @@ function initDefaultOptions(opts: Partial<TransformerOptions> = {}) {
  * @internal
  * @ignore
  */
-export function createId(page: Page | string, language?: LanguageCode) {
+export function createId(
+  page: Page | string,
+  language?: LanguageCode,
+  opts: { translate?: boolean } = {}
+) {
   if (isPage(page)) {
     if (language || page.language) {
-      return `${language || page.language}/${page.id}`;
+      if (opts?.translate) {
+        return `${language || page.language}/${page.uri || page.id}`;
+      } else {
+        return `${language || page.language}/${page.id}`;
+      }
     }
 
     return page.id;
