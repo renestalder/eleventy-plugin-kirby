@@ -2,6 +2,34 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.4.0](https://gitlab.com/renestalder/eleventy-plugin-kirby/compare/v0.3.6...v0.4.0) (2021-10-27)
+
+
+### ⚠ BREAKING CHANGES
+
+* `page._translationIds` is now `page._translations` and
+contains the language information as objects. These objects contain
+the `id`, `slug`, `status`, `language` and `_permalink` of the
+translated page.
+
+### Features
+
+* support for translated slugs ([57abc90](https://gitlab.com/renestalder/eleventy-plugin-kirby/commit/57abc905310bf54aab47730871367da7c5133e5c))
+
+
+### Bug Fixes
+
+* **deps:** update dependency @11ty/eleventy to ^0.12.0 ([830b529](https://gitlab.com/renestalder/eleventy-plugin-kirby/commit/830b529baa8d7a8cd3c6994418cb47d309a662c6))
+* **deps:** update dependency dotenv to v10 ([4da79d5](https://gitlab.com/renestalder/eleventy-plugin-kirby/commit/4da79d5abae1e2e7e31916cf7276a58cf7dd06e8))
+* **deps:** update dependency dotenv to v8.6.0 ([b747e1e](https://gitlab.com/renestalder/eleventy-plugin-kirby/commit/b747e1e1b04468d7c4b41177c7459e714ae32ce9))
+* **deps:** update dependency dotenv to v9 ([43da0d7](https://gitlab.com/renestalder/eleventy-plugin-kirby/commit/43da0d72caced31e18047d5e0d350b0366f7c39c))
+* **deps:** update dependency dotenv to v9.0.2 ([f712a6c](https://gitlab.com/renestalder/eleventy-plugin-kirby/commit/f712a6c7ea6cf601245f37c2aa10a987ea787130))
+* **deps:** update dependency getkirby/cms to v3.5.3 ([a557003](https://gitlab.com/renestalder/eleventy-plugin-kirby/commit/a557003cb4d827fe0fb5402685d638356ddf7e11))
+* **deps:** update dependency node-fetch to v2.6.2 ([1711163](https://gitlab.com/renestalder/eleventy-plugin-kirby/commit/1711163f013a6d63299f1f27e9f7fc0c22609004))
+* **deps:** update dependency node-fetch to v3 ([fd31774](https://gitlab.com/renestalder/eleventy-plugin-kirby/commit/fd31774180f41cbe47ad853ac0e6bc89255f2b44))
+* **deps:** update dependency vlucas/phpdotenv to v5.3.0 ([651f2fe](https://gitlab.com/renestalder/eleventy-plugin-kirby/commit/651f2fe69962871d4c5c4eea36dd43bc45991d60))
+* **deps:** update dependency vlucas/phpdotenv to v5.3.1 ([b575717](https://gitlab.com/renestalder/eleventy-plugin-kirby/commit/b575717850421541adbb52343afabe630f4c97fe))
+
 ### [0.3.6](https://gitlab.com/renestalder/eleventy-plugin-kirby/compare/v0.3.5...v0.3.6) (2021-03-06)
 
 
