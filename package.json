@@ -36,7 +36,7 @@
   },
   "dependencies": {
     "deepmerge": "^4.2.2",
-    "node-fetch": "2.6.5",
+    "node-fetch": "2.6.6",
     "normalizr": "^3.6.1"
   },
   "devDependencies": {
