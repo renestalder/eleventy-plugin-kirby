@@ -1,4 +1,4 @@
-FROM mhart/alpine-node:16
+FROM node:20-alpine
 
 ARG NODE_ENV=development
 ARG BUILD_ENV=local

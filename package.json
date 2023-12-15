@@ -32,7 +32,7 @@
   "homepage": "https://gitlab.com/renestalder/eleventy-plugin-kirby",
   "repository": "gitlab:renestalder/eleventy-plugin-kirby",
   "peerDependencies": {
-    "@11ty/eleventy": ">=0.11.0"
+    "@11ty/eleventy": ">=2.0.0"
   },
   "dependencies": {
     "deepmerge": "^4.2.2",
