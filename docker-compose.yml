@@ -17,11 +17,13 @@ services:
     container_name: 11ty-plugin-kirby-frontend
     environment:
       - NPM_PACKAGE_NAME=eleventy-plugin-kirby
+      - NPM_TOKEN="${NPM_TOKEN}"
     command: npm run watch
     ports:
       - 3000:3000
       - 3001:3001
     volumes:
       - ./:/app:rw
+      - ~/.gitconfig:/etc/gitconfig
     depends_on:
       - kirbycms

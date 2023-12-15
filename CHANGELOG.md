@@ -2,6 +2,29 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.4.1](https://gitlab.com/renestalder/eleventy-plugin-kirby/compare/v0.4.0...v0.4.1) (2023-12-15)
+
+
+### Bug Fixes
+
+* **deps:** update dependency @11ty/eleventy to v2 ([8afa856](https://gitlab.com/renestalder/eleventy-plugin-kirby/commit/8afa8569238221256437bd4cea048a99b0225d43))
+* **deps:** update dependency deepmerge to v4.3.1 ([c762674](https://gitlab.com/renestalder/eleventy-plugin-kirby/commit/c762674ce243f75b5de5412167b87793de35cf01))
+* **deps:** update dependency dotenv to v14 ([3fdc336](https://gitlab.com/renestalder/eleventy-plugin-kirby/commit/3fdc336f7df831c8c7f03db520354b6633ec4f55))
+* **deps:** update dependency dotenv to v14.3.2 ([09d4564](https://gitlab.com/renestalder/eleventy-plugin-kirby/commit/09d456498016bc7c89098d2ccd45994f68e38442))
+* **deps:** update dependency dotenv to v16 ([517d362](https://gitlab.com/renestalder/eleventy-plugin-kirby/commit/517d36255f82208d5f6306735ec4041d79cadd39))
+* **deps:** update dependency dotenv to v16.0.1 ([429f368](https://gitlab.com/renestalder/eleventy-plugin-kirby/commit/429f368a53910e43c5c33605f13d6f4a3cf1766c))
+* **deps:** update dependency dotenv to v16.0.2 ([d4b0f8a](https://gitlab.com/renestalder/eleventy-plugin-kirby/commit/d4b0f8a870b68863b0f25bbcd87845a328648169))
+* **deps:** update dependency dotenv to v16.0.3 ([5553fd8](https://gitlab.com/renestalder/eleventy-plugin-kirby/commit/5553fd8c97f1c7e38b7c2f6a7f383b59a549fa64))
+* **deps:** update dependency node-fetch to v2.6.5 ([8b1dd9e](https://gitlab.com/renestalder/eleventy-plugin-kirby/commit/8b1dd9ecc4e7cdd46d9145b4ba4c42fb1e24b28b))
+* **deps:** update dependency node-fetch to v2.6.6 ([d77d289](https://gitlab.com/renestalder/eleventy-plugin-kirby/commit/d77d2895577420712c4f0493f35cbdcbc2269895))
+* **deps:** update dependency node-fetch to v2.6.7 ([93e86f3](https://gitlab.com/renestalder/eleventy-plugin-kirby/commit/93e86f35e6e14a5f3a873629cfdb7714716610d1))
+* **deps:** update dependency normalizr to v3.6.2 ([cff0d1e](https://gitlab.com/renestalder/eleventy-plugin-kirby/commit/cff0d1e616ca6738baabcc090f23749322d1829a))
+* **deps:** update dependency vlucas/phpdotenv to v5.4.0 ([847293a](https://gitlab.com/renestalder/eleventy-plugin-kirby/commit/847293a291131163ac7b16a42f8be182e187b6e5))
+* **deps:** update dependency vlucas/phpdotenv to v5.4.1 ([6ccb424](https://gitlab.com/renestalder/eleventy-plugin-kirby/commit/6ccb424195996ad3e212948db1f32ac8efe86c0b))
+* **deps:** update dependency vlucas/phpdotenv to v5.5.0 ([f231b67](https://gitlab.com/renestalder/eleventy-plugin-kirby/commit/f231b67750918981f488ff9b2146edd7d49aa7d5))
+* **kql:** correctly set `content` to `true`, not `"true"` ([68409ca](https://gitlab.com/renestalder/eleventy-plugin-kirby/commit/68409cab71467270dc8d070b165cb5b41de1fb53))
+* **kql:** query `parent.id` null-safe ([150adf1](https://gitlab.com/renestalder/eleventy-plugin-kirby/commit/150adf1ff976f76317440292a9fa08c133ad33e2))
+
 ## [0.4.0](https://gitlab.com/renestalder/eleventy-plugin-kirby/compare/v0.3.6...v0.4.0) (2021-10-27)
 
 

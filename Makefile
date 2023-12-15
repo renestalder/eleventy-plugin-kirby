@@ -18,3 +18,9 @@ test-package:
 serve:
 	docker compose up -d kirbycms
 	docker compose up 11ty
+
+release:
+	docker compose run --rm 11ty /bin/sh -c "npm run release"
+
+publish:
+	docker compose run --rm 11ty /bin/sh -c "npm publish"
