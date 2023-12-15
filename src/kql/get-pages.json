@@ -1,124 +1,139 @@
 {
   "query": "site",
   "select": {
-    "language": {
-      "query": "kirby.languageCode"
-    },
-    "languages": {
-      "query": "kirby.languages"
-    },
-    "uploads": {
-      "select": {
-        "images": {
-          "query": "site",
-          "select": {
-            "site": {
-              "query": "site.images",
-              "select": {
-                "id": true,
-                "url": true,
-                "src": "file.resize()",
-                "srcset": "file.srcset()",
-                "type": true,
-                "content": true
-              }
-            },
-            "pages": {
-              "query": "site.index.files.filterBy('type', '==', 'image')",
-              "select": {
-                "id": true,
-                "url": true,
-                "src": "file.resize()",
-                "srcset": "file.srcset()",
-                "type": true,
-                              "content": true
-              }
-            }
-          }
-        },
-        "documents": {
-          "query": "site",
-          "select": {
-            "site": {
-              "query": "site.files.filterBy('type', '!=', 'image')",
-              "select": {
-                "id": true,
-                "url": true,
-                "type": true,
-                "size": true,
-                "content": true
-              }
-            },
-            "pages": {
-              "query": "site.index.files.filterBy('type', '!=', 'image')",
-              "select": {
-                "id": true,
-                "url": true,
-                "type": true,
-                "size": true,
-                "content": true
-              }
-            }
-          }
-        }
-      }
-    },
-    "pages": {
-      "query": "site.children.sortBy('date', 'desc')",
-      "select": {
-        "id": true,
-        "status": true,
-        "template": true,
-        "unlisted": true,
-        "slug": true,
-        "date": true,
-        "title": true,
-        "num": true,
-        "uri": true,
-        "parent": "page.parent.id",
-        "language": {
+      "language": {
           "query": "kirby.languageCode"
-        },
-        "content": true,
-        "children": {
-          "query": "page.children.sortBy('date', 'desc')",
+      },
+      "languages": {
+          "query": "kirby.languages"
+      },
+      "uploads": {
           "select": {
-            "id": true,
-            "status": true,
-            "template": true,
-            "unlisted": true,
-            "slug": true,
-            "date": true,
-            "title": true,
-            "num": true,
-            "uri": true,
-            "parent": "page.parent.id",
-            "language": {
-              "query": "kirby.languageCode"
-            },
-            "content": true,
-            "children": {
-              "query": "page.children.sortBy('date', 'desc')",
-              "select": {
-                "id": true,
-                "status": true,
-                "template": true,
-                "unlisted": true,
-                "slug": true,
-                "date": true,
-                "title": true,
-                "num": true,
-                "uri": true,
-                "parent": "page.parent.id",
-                "language": {
-                  "query": "kirby.languageCode"
-                },
-                "children": true
+              "images": {
+                  "query": "site",
+                  "select": {
+                      "site": {
+                          "query": "site.images",
+                          "select": {
+                              "id": true,
+                              "url": true,
+                              "src": "file.resize()",
+                              "srcset": "file.srcset()",
+                              "type": true,
+                              "content": true
+                          }
+                      },
+                      "pages": {
+                          "query": "site.index.files.filterBy('type', '==', 'image')",
+                          "select": {
+                              "id": true,
+                              "url": true,
+                              "src": "file.resize()",
+                              "srcset": "file.srcset()",
+                              "type": true,
+                              "content": true
+                          }
+                      }
+                  }
+              },
+              "documents": {
+                  "query": "site",
+                  "select": {
+                      "site": {
+                          "query": "site.files.filterBy('type', '!=', 'image')",
+                          "select": {
+                              "id": true,
+                              "url": true,
+                              "type": true,
+                              "size": true,
+                              "content": true
+                          }
+                      },
+                      "pages": {
+                          "query": "site.index.files.filterBy('type', '!=', 'image')",
+                          "select": {
+                              "id": true,
+                              "url": true,
+                              "type": true,
+                              "size": true,
+                              "content": true
+                          }
+                      }
+                  }
               }
-            }
           }
-        }
+      },
+      "pages": {
+          "query": "site.children.sortBy('date', 'desc')",
+          "select": {
+              "id": true,
+              "status": true,
+              "template": true,
+              "unlisted": true,
+              "slug": true,
+              "date": true,
+              "title": true,
+              "num": true,
+              "uri": true,
+              "parent": {
+                "query": "page.parent",
+                "select": {
+                  "id": true
+                }
+              },
+              "language": {
+                  "query": "kirby.languageCode"
+              },
+              "content": true,
+              "children": {
+                  "query": "page.children.sortBy('date', 'desc')",
+                  "select": {
+                      "id": true,
+                      "status": true,
+                      "template": true,
+                      "unlisted": true,
+                      "slug": true,
+                      "date": true,
+                      "title": true,
+                      "num": true,
+                      "uri": true,
+                      "parent": {
+                        "query": "page.parent",
+                        "select": {
+                          "id": true
+                        }
+                      },
+                      "language": {
+                          "query": "kirby.languageCode"
+                      },
+                      "content": true,
+                      "children": {
+                          "query": "page.children.sortBy('date', 'desc')",
+                          "select": {
+                              "id": true,
+                              "status": true,
+                              "template": true,
+                              "unlisted": true,
+                              "slug": true,
+                              "date": true,
+                              "title": true,
+                              "num": true,
+                              "uri": true,
+                              "parent": {
+                                "query": "page.parent",
+                                "select": {
+                                  "id": true
+                                }
+                              },
+                              "language": {
+                                  "query": "kirby.languageCode"
+                              },
+                              "children": true
+                          }
+                      }
+                  }
+              }
+          }
       }
-    }
   }
 }
