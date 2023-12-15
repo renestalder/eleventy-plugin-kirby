@@ -27,16 +27,17 @@ export default function addFilter(eleventyConfig) {
 export function templateSiblings(
   kirby: Kirby,
   currentPage: Page,
-  self = true
+  self = true,
 ): Page[] {
   const parentId = createId(currentPage.parent, currentPage.language);
   const parent = kirby.entities.pages[parentId];
-  const siblings = parent.children.map(
-    (childPageId) => kirby.entities.pages[childPageId]
-  );
+
+  const siblings =
+    parent?.children?.map((childPageId) => kirby.entities.pages[childPageId]) ||
+    [];
 
   const siblingsOfTemplate = siblings.filter(
-    (page) => page.template === currentPage.template
+    (page) => page.template === currentPage.template,
   );
 
   if (self) {
