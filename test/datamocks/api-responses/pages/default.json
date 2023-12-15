@@ -22,7 +22,9 @@
       "title": "Blog",
       "num": 2,
       "uri": "blog",
-      "parent": "blog",
+      "parent": {
+        "id": "blog"
+      },
       "language": null,
       "content": {
         "title": "Blog"
@@ -38,7 +40,9 @@
       "title": "Error",
       "num": null,
       "uri": "error",
-      "parent": "error",
+      "parent": {
+        "id": "error"
+      },
       "language": null,
       "content": {
         "title": "Error"
@@ -54,7 +58,9 @@
       "title": "Home",
       "num": 1,
       "uri": "home",
-      "parent": "home",
+      "parent": {
+        "id": "home"
+      },
       "language": null,
       "content": {
         "title": "Home"

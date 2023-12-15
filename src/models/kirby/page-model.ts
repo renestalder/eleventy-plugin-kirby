@@ -9,7 +9,9 @@ export interface Page<N = string[]> {
   title: string;
   num: number | string;
   uri: string;
-  parent: string;
+  parent: {
+    id: string;
+  } | null;
   language: LanguageCode;
   content: object;
   children: N;

@@ -29,7 +29,13 @@ export function templateSiblings(
   currentPage: Page,
   self = true,
 ): Page[] {
-  const parentId = createId(currentPage.parent, currentPage.language);
+  if (!currentPage?.parent?.id && !self) {
+    return [];
+  } else if (!currentPage?.parent?.id && self) {
+    return [currentPage];
+  }
+
+  const parentId = createId(currentPage.parent.id, currentPage.language);
   const parent = kirby.entities.pages[parentId];
 
   const siblings =
