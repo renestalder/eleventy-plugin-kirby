@@ -22,13 +22,16 @@
     "source": "https://github.com/getkirby/starterkit"
   },
   "require": {
-    "php": ">=7.1.0",
+    "php": "^8.1",
     "errnesto/kirby-plugin-webhooks": "^1.0",
-    "getkirby/cms": "^3.0",
+    "getkirby/cms": "^4.0",
     "vlucas/phpdotenv": "^5.2",
-    "getkirby/kql": "dev-master"
+    "getkirby/kql": "^2.0"
   },
   "config": {
-    "optimize-autoloader": true
+    "optimize-autoloader": true,
+    "allow-plugins": {
+      "getkirby/composer-installer": true
+    }
   }
 }

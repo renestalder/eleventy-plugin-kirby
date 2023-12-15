@@ -1,5 +1,5 @@
 # dev-stage
-FROM webdevops/php-apache-dev:8.1 AS dev-stage
+FROM webdevops/php-apache-dev:8.2 AS dev-stage
 
 WORKDIR /app
 
@@ -8,7 +8,7 @@ COPY composer.* ./
 CMD ["sh", "-c", "composer install --prefer-dist && supervisord"]
 
 # production-stage
-FROM webdevops/php-apache-dev:8.1 AS prod-stage
+FROM webdevops/php-apache-dev:8.2 AS prod-stage
 
 ARG BUILD_ENV=local
 ENV BUILD_ENV=${BUILD_ENV}
