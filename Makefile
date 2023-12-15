@@ -12,8 +12,8 @@ setup:
 lock-update:
 	docker compose run --rm 11ty /bin/sh -c "npm install && cd demo/11ty-web-frontend && npm install"
 
-test:
-	docker compose exec 11ty-web-frontend npm test
+test-package:
+	docker compose run --rm 11ty /bin/sh -c "npm test"
 
 serve:
 	docker compose up -d kirbycms
