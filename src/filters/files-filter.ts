@@ -12,14 +12,14 @@ export default function addFilter(eleventyConfig) {
  * Return file with given id
  * @category Filter
  */
-export function file(kirby: Kirby, id: string): object {
-  return kirby.entities.documents[id];
+export function file(kirby: Kirby, uuid: string): object {
+  return kirby.entities.documents[uuid];
 }
 
 /**
  * Return image with given id
  * @category Filter
  */
-export function image(kirby: Kirby, id: string): object {
-  return kirby.entities.images[id];
+export function image(kirby: Kirby, uuid: string): object {
+  return kirby.entities.images[uuid];
 }
