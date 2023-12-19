@@ -8,8 +8,8 @@ import { log } from "../util/logger";
  * @internal
  */
 export default function addFilter(eleventyConfig) {
-  eleventyConfig.addFilter(pageById.name, pageById);
-  eleventyConfig.addFilter(pagesByIds.name, pagesByIds);
+  eleventyConfig.addFilter(pageByUUID.name, pageByUUID);
+  eleventyConfig.addFilter(pagesByUUIDs.name, pagesByUUIDs);
   eleventyConfig.addFilter(urlForLanguage.name, urlForLanguage);
   eleventyConfig.addFilter(sortBy.name, sortBy);
   eleventyConfig.addFilter(findBy.name, findBy);
@@ -19,22 +19,22 @@ export default function addFilter(eleventyConfig) {
  * Returns any page from the content folder, except for drafts
  * @category Filter
  */
-export function pageById(
+export function pageByUUID(
   pages: EntityItems<Page>,
-  id: string,
-  languageCode?: LanguageCode
+  uuid: string,
+  languageCode?: LanguageCode,
 ): Page {
   let page;
 
   if (languageCode) {
-    page = pages[createId(id, languageCode)];
+    page = pages[createId(uuid, languageCode)];
   } else {
-    page = pages[`${id}`];
+    page = pages[`${uuid}`];
   }
 
   if (!page) {
     console.info(
-      `getPageById([pages], ${id}, ${languageCode}): No page found.`
+      `getPageByUUID: Page with UUID "${uuid}" and lang code "${languageCode}" not found.`,
     );
   }
 
@@ -45,16 +45,16 @@ export function pageById(
  * Returns list of pages by their ids
  * @category Filter
  */
-export function pagesByIds(
+export function pagesByUUIDs(
   pages: EntityItems<Page>,
-  ids: string[],
-  languageCode?: LanguageCode
+  uuids: string[],
+  languageCode?: LanguageCode,
 ): Page[] {
-  if (!pages || !ids) {
+  if (!pages || !uuids) {
     return null;
   }
 
-  return ids.map((id) => pageById(pages, id, languageCode));
+  return uuids.map((uuid) => pageByUUID(pages, uuid, languageCode));
 }
 
 /**
@@ -129,7 +129,7 @@ export function findBy<T = Kirby["entities"]["pages"]>(
   pages: T,
   attribute: string,
   value: string,
-  languageCode?: LanguageCode
+  languageCode?: LanguageCode,
 ): T {
   return Object.values(pages)
     .filter((page) => (languageCode ? page.language === languageCode : true))
