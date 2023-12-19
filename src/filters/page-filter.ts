@@ -29,13 +29,15 @@ export function templateSiblings(
   currentPage: Page,
   self = true,
 ): Page[] {
-  if (!currentPage?.parent?.id && !self) {
-    return [];
-  } else if (!currentPage?.parent?.id && self) {
-    return [currentPage];
+  if (!currentPage?.parent?.uuid) {
+    if (self) {
+      return [];
+    } else {
+      return [currentPage];
+    }
   }
 
-  const parentId = createId(currentPage.parent.id, currentPage.language);
+  const parentId = createId(currentPage.parent.uuid, currentPage.language);
   const parent = kirby.entities.pages[parentId];
 
   const siblings =
@@ -49,6 +51,6 @@ export function templateSiblings(
   if (self) {
     return siblingsOfTemplate;
   } else {
-    return siblingsOfTemplate.filter((page) => page.id !== currentPage.id);
+    return siblingsOfTemplate.filter((page) => page.uuid !== currentPage.uuid);
   }
 }
