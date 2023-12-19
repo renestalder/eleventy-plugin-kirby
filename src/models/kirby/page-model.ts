@@ -2,6 +2,7 @@ import { LanguageCode } from "../language-model";
 
 export interface Page<N = string[]> {
   id: string;
+  uuid: string;
   status: string;
   template: string;
   slug: string;
@@ -11,6 +12,7 @@ export interface Page<N = string[]> {
   uri: string;
   parent: {
     id: string;
+    uuid: string;
   } | null;
   language: LanguageCode;
   content: object;
@@ -25,5 +27,6 @@ export type PageTranslationMeta = Pick<
 >;
 
 export function isPage(obj: any): obj is Page {
-  return obj?.id && obj?.title;
+  const possiblePage = obj as Page;
+  return possiblePage?.uuid && possiblePage?.uuid.startsWith("page://");
 }

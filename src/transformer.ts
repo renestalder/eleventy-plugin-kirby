@@ -23,23 +23,31 @@ export function dataNormalize(data, opts?) {
   if (opts?.languages?.length > 1) {
     const translationProps = ({
       id,
+      uuid,
       status,
       slug,
       language,
       _permalink,
-    }): Page["_translations"] => ({ id, status, slug, language, _permalink });
+    }): Page["_translations"] => ({
+      id,
+      uuid,
+      status,
+      slug,
+      language,
+      _permalink,
+    });
 
     for (const [entityGroupName, entityGroup] of Object.entries(
-      normalizeData.entities
+      normalizeData.entities,
     )) {
       for (const [entityName, entity] of Object.entries(entityGroup)) {
         if (isPage(entity)) {
-          const { id, uri, slug } = entity;
+          const { uuid } = entity;
 
           const _translationIds = opts.languages
             .filter((lang) => lang !== entity.language)
             .reduce((acc, lang) => {
-              const translatedPage = entityGroup[`${lang}/${id}`] as Page;
+              const translatedPage = entityGroup[`${lang}/${uuid}`] as Page;
 
               if (translatedPage?._permalink) {
                 acc[lang] = translationProps(translatedPage);
@@ -93,7 +101,7 @@ function createSchema(opts: Partial<TransformerOptions> = {}) {
           _permalink,
         };
       },
-    }
+    },
   );
 
   page.define({
@@ -153,18 +161,20 @@ function initDefaultOptions(opts: Partial<TransformerOptions> = {}) {
 export function createId(
   page: Page | string,
   language?: LanguageCode,
-  opts: { translate?: boolean } = {}
+  opts: { translate?: boolean } = {},
 ) {
   if (isPage(page)) {
-    if (language || page.language) {
+    if (language || page?.language) {
       if (opts?.translate) {
-        return `${language || page.language}/${page.uri || page.id}`;
+        return `${language || page.language}/${
+          page.uuid || page.uri || page.id
+        }`;
       } else {
-        return `${language || page.language}/${page.id}`;
+        return `${language || page.language}/${page.uuid}`;
       }
     }
 
-    return page.id;
+    return page.uuid;
   } else if (typeof page === "string") {
     if (language) {
       return `${language}/${page}`;

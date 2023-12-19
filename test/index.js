@@ -11,7 +11,7 @@ const {
 
 test("normalize single language page data", (t) => {
   const defaultJSON = loadJSONMock(
-    "datamocks/api-responses/pages/default.json"
+    "datamocks/api-responses/pages/default.json",
   );
   const normalizedData = transformer.dataNormalize(defaultJSON);
 
@@ -20,23 +20,28 @@ test("normalize single language page data", (t) => {
   t.is(
     normalizedData.result.languages.length,
     0,
-    "Should not have any languages in the language list"
+    "Should not have any languages in the language list",
   );
 
   t.falsy(
     normalizedData.result.language,
-    "Should have a language in the result set"
+    "Should have a language in the result set",
   );
 
   t.truthy(
     Array.isArray(normalizedData.result.pages),
-    "Pages in result set are in a array of IDs"
+    "Pages in result set are in a array of string",
+  );
+
+  t.truthy(
+    normalizedData.result.pages[0].startsWith("page://"),
+    "Pages in result set are build on UUIDs",
   );
 
   t.is(
     Object.keys(normalizedData.entities.pages).length,
     3,
-    "All pages should be listed, normalized in entities"
+    "All pages should be listed, normalized in entities",
   );
 
   t.log(normalizedData);
@@ -56,7 +61,17 @@ test("normalize multilingual page data", (t) => {
   t.is(
     Object.keys(normalizedData.entities.pages).length,
     12,
-    "All pages should be listed, normalized in entities, flattened in all languages"
+    "All pages should be listed, normalized in entities, flattened in all languages",
+  );
+
+  t.is(
+    Object.keys(normalizedData.entities.pages).filter(
+      (key) =>
+        key.includes("page://") &&
+        (key.startsWith(languages[0]) || key.startsWith(languages[1])),
+    ).length,
+    12,
+    "All normalized page keys start with the language code and contain the UUID path",
   );
 
   t.log(normalizedData);
@@ -71,11 +86,11 @@ test("query transforms", (t) => {
 
   t.truthy(
     processedQuery.indexOf(PLACEHOLDER_IMAGE_SRC) === -1,
-    "Placeholder for image src should be replaced"
+    "Placeholder for image src should be replaced",
   );
   t.truthy(
     processedQuery.indexOf(PLACEHOLDER_IMAGE_SRCSET) === -1,
-    "Placeholder for image srcset should be replaced"
+    "Placeholder for image srcset should be replaced",
   );
 });
 
@@ -92,24 +107,19 @@ test("Filter: page.templateSiblings", (t) => {
     languages,
   });
 
-  const id = transformer.createId(
-    kirby.entities.pages["en/blog/article-1"].parent,
-    kirby.entities.pages["en/blog/article-1"].language
-  );
-
-  const blogPage = kirby.entities.pages["en/blog/article-1"];
+  const blogPage = kirby.entities.pages["de/page://000000002"];
   const resultWithSelf = templateSiblings(kirby, blogPage);
   const resultWithoutSelf = templateSiblings(kirby, blogPage, false);
 
   t.is(
     resultWithSelf.length,
     2,
-    "The found siblings, including the given page, should be exactly 2"
+    "The found siblings, including the given page, should be exactly 2",
   );
   t.is(
     resultWithoutSelf.length,
     1,
-    "The found siblings, excluding the given page, should be exactly 1"
+    "The found siblings, excluding the given page, should be exactly 1",
   );
 });
 
@@ -135,12 +145,12 @@ test("Filter: sortBy", (t) => {
   t.is(
     testList[2],
     sortedListAsc[0],
-    "List should sort correctly in ascending direction"
+    "List should sort correctly in ascending direction",
   );
   t.is(
     testList[1],
     sortedListDesc[0],
-    "List should sort correctly in descending direction"
+    "List should sort correctly in descending direction",
   );
 
   t.log(testList);
@@ -172,7 +182,7 @@ test("Filter: pages.findBy", (t) => {
   t.is(
     testSet["page-2"],
     foundPage,
-    "Found page should equal one and an exact match"
+    "Found page should equal one and an exact match",
   );
 
   const foundPageWithLanguage = findBy(testSet, "template", "index", "de");
@@ -180,6 +190,6 @@ test("Filter: pages.findBy", (t) => {
   t.is(
     testSet["page-4"],
     foundPageWithLanguage,
-    "Found page should equal one and an exact match from the given language"
+    "Found page should equal one and an exact match from the given language",
   );
 });

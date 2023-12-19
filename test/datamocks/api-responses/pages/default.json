@@ -14,6 +14,7 @@
   "pages": [
     {
       "id": "blog",
+      "uuid": "page://000000001",
       "status": "listed",
       "template": "default",
       "unlisted": "",
@@ -22,9 +23,7 @@
       "title": "Blog",
       "num": 2,
       "uri": "blog",
-      "parent": {
-        "id": "blog"
-      },
+      "parent": null,
       "language": null,
       "content": {
         "title": "Blog"
@@ -32,6 +31,7 @@
     },
     {
       "id": "error",
+      "uuid": "page://000000002",
       "status": "unlisted",
       "template": "default",
       "unlisted": "",
@@ -40,9 +40,7 @@
       "title": "Error",
       "num": null,
       "uri": "error",
-      "parent": {
-        "id": "error"
-      },
+      "parent": null,
       "language": null,
       "content": {
         "title": "Error"
@@ -50,6 +48,7 @@
     },
     {
       "id": "home",
+      "uuid": "page://000000003",
       "status": "listed",
       "template": "default",
       "unlisted": "",
@@ -58,9 +57,7 @@
       "title": "Home",
       "num": 1,
       "uri": "home",
-      "parent": {
-        "id": "home"
-      },
+      "parent": null,
       "language": null,
       "content": {
         "title": "Home"
