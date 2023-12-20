@@ -2,6 +2,8 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [0.5.0-alpha.4](https://gitlab.com/renestalder/eleventy-plugin-kirby/compare/v0.5.0-alpha.3...v0.5.0-alpha.4) (2023-12-20)
+
 ## [0.5.0-alpha.3](https://gitlab.com/renestalder/eleventy-plugin-kirby/compare/v0.5.0-alpha.2...v0.5.0-alpha.3) (2023-12-20)
 
 
