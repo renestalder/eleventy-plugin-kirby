@@ -2,7 +2,7 @@ const fs = require("fs");
 const test = require("ava");
 const transformer = require("../dist/transformer");
 const { templateSiblings } = require("../dist/filters/page-filter");
-const { sortBy, findBy } = require("../dist/filters/pages-filter");
+const { sortBy, findBy, pageById } = require("../dist/filters/pages-filter");
 const {
   applyQueryProcessors,
   PLACEHOLDER_IMAGE_SRC,
@@ -197,4 +197,20 @@ test("Filter: pages.findBy", (t) => {
     foundPageWithLanguage,
     "Found page should equal one and an exact match from the given language",
   );
+});
+
+test("Filter: pageByID", (t) => {
+  const languages = ["en", "de"];
+  const de = loadJSONMock("datamocks/api-responses/pages/i18n-de.json");
+  const en = loadJSONMock("datamocks/api-responses/pages/i18n-en.json");
+  const dataToNormalize = [de, en];
+  const kirby = transformer.dataNormalize(dataToNormalize, {
+    languages,
+  });
+
+  const foundPage = pageById(kirby.entities.pages, "blog", "de");
+
+  t.truthy(foundPage, "Found exactly one page");
+
+  t.is(foundPage.language, "de", "Found page has the correct language");
 });

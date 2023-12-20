@@ -161,20 +161,23 @@ function initDefaultOptions(opts: Partial<TransformerOptions> = {}) {
 export function createId(
   page: Page | string,
   language?: LanguageCode,
-  opts: { translate?: boolean } = {},
+  opts: {
+    translate?: boolean;
+    key?: "id" | "uuid";
+  } = {},
 ) {
   if (isPage(page)) {
     if (language || page?.language) {
       if (opts?.translate) {
         return `${language || page.language}/${
-          page.uuid || page.uri || page.id
+          page[opts?.key] || page.uuid || page.uri || page.id
         }`;
       } else {
-        return `${language || page.language}/${page.uuid}`;
+        return `${language || page.language}/${page[opts?.key] || page.uuid}`;
       }
     }
 
-    return page.uuid;
+    return page[opts?.key] || page.uuid;
   } else if (typeof page === "string") {
     if (language) {
       return `${language}/${page}`;

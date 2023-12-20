@@ -10,9 +10,36 @@ import { log } from "../util/logger";
 export default function addFilter(eleventyConfig) {
   eleventyConfig.addFilter(pageByUUID.name, pageByUUID);
   eleventyConfig.addFilter(pagesByUUIDs.name, pagesByUUIDs);
+  eleventyConfig.addFilter(pageById.name, pageById);
   eleventyConfig.addFilter(urlForLanguage.name, urlForLanguage);
   eleventyConfig.addFilter(sortBy.name, sortBy);
   eleventyConfig.addFilter(findBy.name, findBy);
+}
+
+/**
+ * Returns any page from the content folder, except for drafts
+ * @category Filter
+ */
+export function pageById(
+  pages: EntityItems<Page>,
+  id: string,
+  languageCode?: LanguageCode,
+): Page {
+  const page = Object.values(pages).find((page) => {
+    if (languageCode) {
+      return page.id === id && page.language === languageCode;
+    } else {
+      return page.id === id;
+    }
+  });
+
+  if (!page) {
+    console.info(
+      `getPageById: Page with id "${id}" and lang code "${languageCode}" not found.`,
+    );
+  }
+
+  return page;
 }
 
 /**
