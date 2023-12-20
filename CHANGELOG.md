@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [0.5.0-alpha.1](https://gitlab.com/renestalder/eleventy-plugin-kirby/compare/v0.5.0-alpha.0...v0.5.0-alpha.1) (2023-12-20)
+
+
+### Bug Fixes
+
+* **transformer:** normalize all files by their uuid ([24b034e](https://gitlab.com/renestalder/eleventy-plugin-kirby/commit/24b034edaea42033e83a8ca54fb548e4c4d9766a))
+
 ## [0.5.0-alpha.0](https://gitlab.com/renestalder/eleventy-plugin-kirby/compare/v0.4.0...v0.5.0-alpha.0) (2023-12-19)
 
 
