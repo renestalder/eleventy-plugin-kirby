@@ -51,13 +51,39 @@ export function pageByUUID(
   uuid: string,
   languageCode?: LanguageCode,
 ): Page {
+  if (uuid === undefined || uuid === null) {
+    console.error(`pageByUUID: No "uuid" passed.`);
+
+    return null;
+  }
+
   if (!uuid.startsWith("page://")) {
-    // Fallback to searching page by id in case this doesn't look like an uuid.
-    console.warn(
-      `pageByUUID: "${uuid}" doesn't look like an UUID. Falling back to "pageById".`,
+    if (!uuid.includes("page://")) {
+      // Fallback to searching page by id in case this doesn't look like an uuid.
+      console.warn(
+        `pageByUUID: "${uuid}" doesn't look like an UUID. Falling back to "pageById".`,
+      );
+
+      return pageById(pages, uuid, languageCode);
+    }
+
+    const translatedUUIDMatcher = new RegExp(
+      "^(?<languageCode>\\w+)/(?<uuid>page://.+)",
     );
 
-    return pageById(pages, uuid, languageCode);
+    if (!translatedUUIDMatcher.test(uuid)) {
+      console.error(
+        `pageByUUID: The uuid "${uuid}" is not a valid ID to search for.`,
+      );
+
+      return null;
+    }
+
+    // Get only the uuid from the "translated" uuid that was provided.
+    // e.g. de/page://... will be page://...
+    const matches = translatedUUIDMatcher.exec(uuid);
+    uuid = matches?.groups?.uuid;
+    languageCode = languageCode || matches?.groups?.languageCode;
   }
 
   let page;

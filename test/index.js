@@ -2,7 +2,12 @@ const fs = require("fs");
 const test = require("ava");
 const transformer = require("../dist/transformer");
 const { templateSiblings } = require("../dist/filters/page-filter");
-const { sortBy, findBy, pageById } = require("../dist/filters/pages-filter");
+const {
+  sortBy,
+  findBy,
+  pageById,
+  pageByUUID,
+} = require("../dist/filters/pages-filter");
 const {
   applyQueryProcessors,
   PLACEHOLDER_IMAGE_SRC,
@@ -213,4 +218,25 @@ test("Filter: pageByID", (t) => {
   t.truthy(foundPage, "Found exactly one page");
 
   t.is(foundPage.language, "de", "Found page has the correct language");
+});
+
+test("Filter: pageByUUID", (t) => {
+  const testSet = {
+    "de/page://000000000": {
+      uuid: "page://000000000",
+    },
+  };
+
+  const legalUUID = pageByUUID(testSet, "page://000000000", "de");
+  const translatedUUID = pageByUUID(testSet, "de/page://000000000", "de");
+  const translatedUUIDWithoutLang = pageByUUID(testSet, "de/page://000000000");
+  const illegalUUID = pageByUUID(testSet, "asd-page://0000000", "de");
+
+  t.truthy(legalUUID, "Legal UUIDs work");
+  t.truthy(translatedUUID, "Already translated UUIDs work");
+  t.truthy(
+    translatedUUIDWithoutLang,
+    "Already translated UUIDs without providing a language code work",
+  );
+  t.falsy(illegalUUID, "Illegal UUIDs return `null`");
 });
