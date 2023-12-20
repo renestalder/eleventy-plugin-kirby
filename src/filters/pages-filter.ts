@@ -51,6 +51,15 @@ export function pageByUUID(
   uuid: string,
   languageCode?: LanguageCode,
 ): Page {
+  if (!uuid.startsWith("page://")) {
+    // Fallback to searching page by id in case this doesn't look like an uuid.
+    console.warn(
+      `pageByUUID: "${uuid}" doesn't look like an UUID. Falling back to "pageById".`,
+    );
+
+    return pageById(pages, uuid, languageCode);
+  }
+
   let page;
 
   if (languageCode) {
@@ -61,7 +70,7 @@ export function pageByUUID(
 
   if (!page) {
     console.info(
-      `getPageByUUID: Page with UUID "${uuid}" and lang code "${languageCode}" not found.`,
+      `pageByUUID: Page with UUID "${uuid}" and lang code "${languageCode}" not found.`,
     );
   }
 
