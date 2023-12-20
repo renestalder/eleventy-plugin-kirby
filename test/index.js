@@ -8,6 +8,9 @@ const {
   pageById,
   pageByUUID,
 } = require("../dist/filters/pages-filter");
+
+const { file, image } = require("../dist/filters/files-filter");
+
 const {
   applyQueryProcessors,
   PLACEHOLDER_IMAGE_SRC,
@@ -239,4 +242,27 @@ test("Filter: pageByUUID", (t) => {
     "Already translated UUIDs without providing a language code work",
   );
   t.falsy(illegalUUID, "Illegal UUIDs return `null`");
+});
+
+test("Filter: file", (t) => {
+  const testSet = {
+    entities: {
+      documents: {
+        "file://000000000": {
+          id: "file-example-1",
+          uuid: "file://000000000",
+        },
+        "file://000000001": {
+          id: "file-example-2",
+          uuid: "file://000000001",
+        },
+      },
+    },
+  };
+
+  const fileByUUID = file(testSet, "file://000000001");
+  const fileById = file(testSet, "file-example-2");
+
+  t.truthy(fileByUUID, "Can get files by their UUID");
+  t.truthy(fileById, "Legacy calls by ID also work");
 });
