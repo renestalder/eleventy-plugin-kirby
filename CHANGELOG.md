@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [0.5.0-alpha.2](https://gitlab.com/renestalder/eleventy-plugin-kirby/compare/v0.5.0-alpha.1...v0.5.0-alpha.2) (2023-12-20)
+
+
+### Bug Fixes
+
+* **filters/pages:** restore `pageById` filter ([185fbbe](https://gitlab.com/renestalder/eleventy-plugin-kirby/commit/185fbbeb68882f5591890190a1881ea4833a85ce))
+
 ## [0.5.0-alpha.1](https://gitlab.com/renestalder/eleventy-plugin-kirby/compare/v0.5.0-alpha.0...v0.5.0-alpha.1) (2023-12-20)
 
 
