@@ -108,8 +108,8 @@ function createSchema(opts: Partial<TransformerOptions> = {}) {
     children: [page],
   });
 
-  const image = new schema.Entity("images");
-  const document = new schema.Entity("documents");
+  const image = new schema.Entity("images", {}, { idAttribute: "uuid" });
+  const document = new schema.Entity("documents", {}, { idAttribute: "uuid" });
   const imageGroup = {
     site: new schema.Array(image),
     pages: new schema.Array(image),

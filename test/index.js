@@ -44,6 +44,11 @@ test("normalize single language page data", (t) => {
     "All pages should be listed, normalized in entities",
   );
 
+  t.truthy(
+    Object.keys(normalizedData.entities.images).includes("file://000000001"),
+    "Files are correctly normalized with UUID",
+  );
+
   t.log(normalizedData);
 });
 

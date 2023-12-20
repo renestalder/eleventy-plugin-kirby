@@ -3,7 +3,29 @@
   "languages": [],
   "uploads": {
     "images": {
-      "site": [],
+      "site": [
+        {
+          "id": "example.png",
+          "uuid": "file://000000001",
+          "src": {
+            "extension": "png",
+            "filename": "example.png",
+            "height": 487,
+            "id": "./example.png",
+            "mime": "image/png",
+            "niceSize": "262,18 KB",
+            "template": "blocks/image",
+            "type": "image",
+            "url": "#",
+            "width": 1000
+          },
+          "type": "image",
+          "content": {
+            "template": "blocks/image",
+            "uuid": "76gNWWUhUYsVtb3i"
+          }
+        }
+      ],
       "pages": []
     },
     "documents": {
