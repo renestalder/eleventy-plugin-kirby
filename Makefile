@@ -19,6 +19,12 @@ serve:
 	docker compose up -d kirbycms
 	docker compose up 11ty
 
+build:
+	docker compose run --rm 11ty /bin/sh -c "npm run build"
+
+prerelease: build
+	docker compose run --rm 11ty /bin/sh -c "npm run release -- --prerelease"
+
 release:
 	docker compose run --rm 11ty /bin/sh -c "npm run release"
 
