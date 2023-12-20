@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [0.5.0-alpha.6](https://gitlab.com/renestalder/eleventy-plugin-kirby/compare/v0.5.0-alpha.5...v0.5.0-alpha.6) (2023-12-20)
+
+
+### Bug Fixes
+
+* **filters/files:** add backwards compatiblity for old content without UUID ([f837d05](https://gitlab.com/renestalder/eleventy-plugin-kirby/commit/f837d0594d9c118c0194215c46c8ecf51727a485))
+
 ## [0.5.0-alpha.5](https://gitlab.com/renestalder/eleventy-plugin-kirby/compare/v0.5.0-alpha.4...v0.5.0-alpha.5) (2023-12-20)
 
 
