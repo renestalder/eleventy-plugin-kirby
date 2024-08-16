@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [0.5.1](https://gitlab.com/renestalder/eleventy-plugin-kirby/compare/v0.5.0...v0.5.1) (2024-08-16)
+
+
+### Features
+
+* add `intendedTemplate`  to standard properties to retrieve ([b66b9f8](https://gitlab.com/renestalder/eleventy-plugin-kirby/commit/b66b9f83b713028f3de168b4617e8c1bf50a6f46))
+
+
+### Bug Fixes
+
+* **deps:** update dependency dotenv to v16.3.1 ([967b7b2](https://gitlab.com/renestalder/eleventy-plugin-kirby/commit/967b7b2e4ef45b7df102883f502ffa529fc9872c))
+* **deps:** update dependency dotenv to v16.3.2 ([f216aaf](https://gitlab.com/renestalder/eleventy-plugin-kirby/commit/f216aafd90d27eafb233f26014c038f8727f4bca))
+* **deps:** update dependency dotenv to v16.4.1 ([35d6e38](https://gitlab.com/renestalder/eleventy-plugin-kirby/commit/35d6e3876e9b6828fddae579b81d4fe9b16f148c))
+* **deps:** update dependency dotenv to v16.4.4 ([93d7b12](https://gitlab.com/renestalder/eleventy-plugin-kirby/commit/93d7b124dffd8fb5ce1a8195a54fac8e9e7b3238))
+* **deps:** update dependency dotenv to v16.4.5 ([f2db1cd](https://gitlab.com/renestalder/eleventy-plugin-kirby/commit/f2db1cd71948d2138e891200714576bccaf89769))
+
 ## [0.5.0](https://gitlab.com/renestalder/eleventy-plugin-kirby/compare/v0.5.0-alpha.6...v0.5.0) (2023-12-20)
 
 ## [0.5.0-alpha.6](https://gitlab.com/renestalder/eleventy-plugin-kirby/compare/v0.5.0-alpha.5...v0.5.0-alpha.6) (2023-12-20)
